@@ -12,6 +12,7 @@ interface Product {
   image: string;
   action: string;
   color: string;
+  link: string; // 1. Added link property
 }
 
 const products: Product[] = [
@@ -23,6 +24,7 @@ const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1617802690658-1173a812650d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
     action: 'Escanear Ahora',
     color: 'from-emerald-600/90 to-green-900/90',
+    link: '#', // Add your link here
   },
   {
     id: 'triviazoo',
@@ -32,6 +34,7 @@ const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
     action: 'Jugar Trivia',
     color: 'from-amber-600/90 to-orange-900/90',
+    link: '#', // Add your link here
   },
   {
     id: 'bot-jubi',
@@ -41,6 +44,7 @@ const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1614680376593-902f74cf0d41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
     action: 'Chatear en WhatsApp',
     color: 'from-teal-600/90 to-cyan-900/90',
+    link: 'https://wa.me/yournumber', // Example WhatsApp link
   },
   {
     id: 'entrevista',
@@ -50,6 +54,7 @@ const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
     action: 'Ver en YouTube',
     color: 'from-red-600/90 to-rose-900/90',
+    link: 'https://youtube.com/your-video', // Example YouTube link
   },
 ];
 
@@ -79,13 +84,16 @@ export const ProductGrid = () => {
         {/* Grid de productos */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {products.map((product, index) => (
-            <motion.div
+            <motion.a // 2. Changed from motion.div to motion.a
               key={product.id}
+              href={product.link} // 3. Added href
+              target="_blank" // Opens in new tab
+              rel="noopener noreferrer" // Security best practice
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer"
+              className="group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer block" // Added block
             >
               {/* Imagen de fondo */}
               <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-110">
@@ -122,13 +130,13 @@ export const ProductGrid = () => {
                     </p>
                   </div>
 
-                  {/* Botón */}
-                  <button className="flex items-center gap-2 text-white font-semibold group/btn">
+                  {/* Botón (visual) */}
+                  <div className="flex items-center gap-2 text-white font-semibold group/btn">
                     <span className="border-b-2 border-white/50 pb-1 transition-all group-hover/btn:border-white">
                       {product.action}
                     </span>
                     <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
-                  </button>
+                  </div>
                 </div>
               </div>
 
@@ -136,7 +144,7 @@ export const ProductGrid = () => {
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent" />
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
