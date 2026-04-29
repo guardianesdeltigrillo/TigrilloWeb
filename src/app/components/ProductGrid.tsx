@@ -12,7 +12,7 @@ interface Product {
   image: string;
   action: string;
   color: string;
-  link: string; // 1. Added link property
+  link: string;
 }
 
 const products: Product[] = [
@@ -24,7 +24,7 @@ const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1617802690658-1173a812650d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
     action: 'Escanear Ahora',
     color: 'from-emerald-600/90 to-green-900/90',
-    link: '#', // Add your link here
+    link: '#cedula-ar', 
   },
   {
     id: 'triviazoo',
@@ -34,7 +34,7 @@ const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
     action: 'Jugar Trivia',
     color: 'from-amber-600/90 to-orange-900/90',
-    link: '#', https://guardianes-del-tigrillo.itch.io/triviazoo
+    link: '#triviazoo',
   },
   {
     id: 'bot-jubi',
@@ -44,7 +44,7 @@ const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1614680376593-902f74cf0d41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
     action: 'Chatear en WhatsApp',
     color: 'from-teal-600/90 to-cyan-900/90',
-    link: 'https://wa.me/yournumber', // Example WhatsApp link
+    link: '#bot-jubi', 
   },
   {
     id: 'entrevista',
@@ -52,85 +52,64 @@ const products: Product[] = [
     description: 'Mira nuestra entrevista exclusiva en YouTube con expertos del zoológico que cuidan al tigrillo lanudo',
     icon: Video,
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-    action: 'Ver en YouTube',
-    color: 'from-red-600/90 to-rose-900/90',
-    link: 'https://youtube.com/your-video', // Example YouTube link
-  },
+    action: 'Ver Entrevista',
+    color: 'from-blue-600/90 to-indigo-900/90',
+    link: '#entrevista',
+  }
 ];
 
 export const ProductGrid = () => {
   return (
-    <section className="min-h-screen flex items-center py-20 px-6 md:px-24 bg-gradient-to-br from-[#1a432e] to-[#0d2419]">
-      <div className="max-w-7xl mx-auto w-full">
-        {/* Header */}
+    <section className="py-24 bg-white px-6">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-white/60 text-sm font-bold uppercase tracking-widest">
-            Experiencias Interactivas
-          </span>
-          <h2 className="text-4xl md:text-6xl font-serif text-white mt-4 mb-6">
-            Explora Nuestros Productos
-          </h2>
-          <p className="text-white/80 text-lg max-w-3xl mx-auto">
-            Descubre formas innovadoras de conectar con el tigrillo lanudo a través de tecnología y educación
+          <h2 className="text-4xl md:text-5xl font-serif text-[#1a432e] mb-6">Explora Nuestro Ecosistema</h2>
+          <p className="text-lg text-[#555] max-w-2xl mx-auto">
+            Descubre formas interactivas de aprender y ayudar en la conservación del tigrillo lanudo a través de nuestras experiencias digitales.
           </p>
         </motion.div>
 
-        {/* Grid de productos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {products.map((product, index) => (
-            <motion.a // 2. Changed from motion.div to motion.a
+            <motion.a
+              href={product.link}
               key={product.id}
-              href={product.link} // 3. Added href
-              target="_blank" // Opens in new tab
-              rel="noopener noreferrer" // Security best practice
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer block" // Added block
+              className="group relative overflow-hidden rounded-2xl aspect-[4/3] md:aspect-auto md:h-[400px] shadow-xl flex items-end cursor-pointer"
             >
-              {/* Imagen de fondo */}
-              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-110">
+              <div className="absolute inset-0 z-0">
                 <ImageWithFallback
                   src={product.image}
                   alt={product.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-
-              {/* Overlay gradient */}
-              <div className={cn(
-                "absolute inset-0 bg-gradient-to-br opacity-80 transition-opacity duration-300 group-hover:opacity-90",
-                product.color
-              )} />
-
-              {/* Contenido */}
-              <div className="relative h-full p-8 flex flex-col justify-between">
-                {/* Icono */}
-                <div className="flex justify-end">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transition-transform duration-300 group-hover:scale-110">
-                    <product.icon className="w-6 h-6 text-white" />
+              <div className={cn("absolute inset-0 z-10 bg-gradient-to-t opacity-90 transition-opacity duration-300", product.color)} />
+              
+              <div className="relative z-20 p-8 md:p-10 w-full h-full flex flex-col justify-end">
+                <div className="transform transition-transform duration-500 group-hover:-translate-y-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 text-white">
+                      <product.icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-wider text-white">{product.title}</h3>
                   </div>
-                </div>
-
-                {/* Texto */}
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">
-                      {product.title}
-                    </h3>
-                    <p className="text-white/90 text-sm md:text-base leading-relaxed">
+                  
+                  <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 group-hover:mb-6 transition-all duration-500 overflow-hidden">
+                    <p className="text-white/90 text-lg leading-relaxed">
                       {product.description}
                     </p>
                   </div>
 
-                  {/* Botón (visual) */}
                   <div className="flex items-center gap-2 text-white font-semibold group/btn">
                     <span className="border-b-2 border-white/50 pb-1 transition-all group-hover/btn:border-white">
                       {product.action}
@@ -140,29 +119,12 @@ export const ProductGrid = () => {
                 </div>
               </div>
 
-              {/* Efecto de brillo al hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent" />
               </div>
             </motion.a>
           ))}
         </div>
-
-        {/* Call to action adicional */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-16"
-        >
-          <p className="text-white/70 text-sm">
-            ¿Tienes ideas para más experiencias? 
-            <button className="ml-2 text-white underline hover:text-white/80 transition-colors">
-              Contáctanos
-            </button>
-          </p>
-        </motion.div>
       </div>
     </section>
   );

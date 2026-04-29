@@ -24,52 +24,53 @@ function App() {
         <ProductGrid />
         
         {/* Extended Product Sections */}
-     {/* 1. Tigrillo Quest */}
+        
+        {/* 1. Triviazoo */}
         <ProductSection
-          id="busqueda"
+          id="triviazoo"
           subtitle="Interactividad y Educación"
           title="Triviazoo"
           description="Un juego de trivia sobre el tigrillo!"
-          image="https://images.unsplash.com/photo-1768566626252..."
+          image="https://images.unsplash.com/photo-1768566626252"
           buttonText="Jugar Ahora"
-          buttonLink="https://guardianes-del-tigrillo.itch.io/triviazoo"        />
+          buttonLink="https://guardianes-del-tigrillo.itch.io/triviazoo"
+        />
 
-        {/* 2. Triviazoo - 3D Interactive Section */}
+        {/* 2. Cedula AR - 3D Interactive Section */}
         <ProductSection3D
-          id="triviazoo"
+          id="cedula-ar"
           subtitle="Juego de Trivia Interactivo"
           title="Cedula AR"
           description="Conoce datos curiosos sobre nuestro amigo el tigrillo escaneando sus varias cedulas."
           reverse
           dark
-          buttonText="Comenzar Trivia"
-          buttonLink="/trivia" {/* <-- ADD YOUR LINK HERE */}
+          buttonText="Explorar Cédulas"
+          buttonLink="/trivia" 
         />
 
-        {/* 3. Mitazoo Podcast */}
+        {/* 3. Entrevista Podcast */}
         <ProductSection
-          id="mitazoo"
+          id="entrevista"
           subtitle="Historias desde el Campo"
           title="Mitazoo Entrevista"
           description="Escucha conversaciones fascinantes con expertos."
-          image="https://images.unsplash.com/photo-1562941995-6426bb43b439..."
+          image="https://images.unsplash.com/photo-1562941995-6426bb43b439"
           buttonText="Escuchar Episodios"
-          buttonLink="https://spotify.com/your-podcast-link" {/* <-- EXTERNAL LINKS WORK TOO */}
+          buttonLink="https://spotify.com/your-podcast-link"
         />
 
-        {/* 4. Zooteka Encyclopedia */}
+        {/* 4. Bot Jubi */}
         <ProductSection
-          id="zooteka"
+          id="bot-jubi"
           subtitle="Conocimiento Científico"
           title="Bot Jubi"
           description="Ten conversaciones con nuestro amigo Jubi el tigrillo."
-          image="https://images.unsplash.com/photo-1620829846940..."
+          image="https://images.unsplash.com/photo-1620829846940"
           reverse
           dark
           buttonText="Abrir Enciclopedia"
-          buttonLink="/zooteka" {/* <-- ADD YOUR LINK HERE */}
+          buttonLink="/zooteka" 
         />
-
     
         {/* Partners Section */}
         <Partners />

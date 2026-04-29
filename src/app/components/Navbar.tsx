@@ -20,24 +20,22 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Inicio", href: "#inicio", icon: Home },
-  { label: "Triviazoo", href: "#busqueda", icon: Gamepad2 },
-  { label: "Cedula AR", href: "#triviazoo", icon: Brain },
-  { label: 'Entrevista', href: "#mitazoo", icon: Mic },
-  { label: "Bot Jubi", href: "#datazoo", icon: BarChart3 },
+  { label: "Triviazoo", href: "#triviazoo", icon: Gamepad2 },
+  { label: "Cedula AR", href: "#cedula-ar", icon: Brain },
+  { label: "Entrevista", href: "#entrevista", icon: Mic },
+  { label: "Bot Jubi", href: "#bot-jubi", icon: BarChart3 },
 ];
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] =
-    React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (
@@ -66,28 +64,11 @@ export const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[#1a432e] rounded-full flex items-center justify-center text-white font-bold text-lg">
-            TL
-          </div>
-          <div className="hidden sm:block">
-            <h1
-              className={cn(
-                "font-bold leading-tight",
-                isScrolled ? "text-[#1a432e]" : "text-white",
-              )}
-            >
-              Tigrillo Lanudo
-            </h1>
-            <p
-              className={cn(
-                "text-xs opacity-80",
-                isScrolled ? "text-[#1a432e]" : "text-white",
-              )}
-            >
-              Wildlife Conservation Hub
-            </p>
-          </div>
+        <div className="flex items-center gap-2">
+          <Brain className={cn("w-8 h-8", isScrolled ? "text-[#1a432e]" : "text-white")} />
+          <span className={cn("text-xl font-bold font-serif", isScrolled ? "text-[#1a432e]" : "text-white")}>
+            Zooteka
+          </span>
         </div>
 
         {/* Desktop Menu */}
@@ -116,11 +97,7 @@ export const Navbar = () => {
           )}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? (
-            <X size={24} />
-          ) : (
-            <Menu size={24} />
-          )}
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -136,7 +113,7 @@ export const Navbar = () => {
               key={item.href}
               href={item.href}
               onClick={(e) => scrollToSection(e, item.href)}
-              className="flex items-center gap-3 text-[#1a432e] font-medium py-2"
+              className="flex items-center gap-3 text-[#1a432e] font-medium"
             >
               <item.icon size={20} />
               {item.label}

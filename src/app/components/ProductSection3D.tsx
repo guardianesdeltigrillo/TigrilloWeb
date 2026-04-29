@@ -12,6 +12,7 @@ interface ProductSection3DProps {
   description: string;
   reverse?: boolean;
   buttonText?: string;
+  buttonLink?: string; // 1. ADDED PROPS HERE
   dark?: boolean;
 }
 
@@ -61,8 +62,6 @@ function Canvas3DScene() {
     scene.add(ground);
 
     let model: THREE.Group | null = null;
-    let mixer: THREE.AnimationMixer | null = null;
-
     let targetRotationX = 0;
     let targetRotationY = 0;
 
@@ -78,13 +77,11 @@ function Canvas3DScene() {
     container.addEventListener("mousemove", handleMouseMove);
 
     const loader = new GLTFLoader();
-    const clock = new THREE.Clock();
 
     loader.load(
       "https://threejs.org/examples/models/gltf/Horse.glb",
       (gltf) => {
         model = gltf.scene;
-
         model.traverse((child) => {
           if ((child as THREE.Mesh).isMesh) {
             const mesh = child as THREE.Mesh;
@@ -92,48 +89,30 @@ function Canvas3DScene() {
             mesh.receiveShadow = true;
           }
         });
-
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
-
         const scale = 3 / Math.max(size.x, size.y, size.z);
         model.scale.setScalar(scale);
         model.position.sub(center.multiplyScalar(scale));
-
         scene.add(model);
-
-        if (gltf.animations.length) {
-          mixer = new THREE.AnimationMixer(model);
-          gltf.animations.forEach((clip) =>
-            mixer!.clipAction(clip).play()
-          );
-        }
-
         setLoading(false);
       },
       undefined,
-      () => {
-        setError("No se pudo cargar el modelo");
+      (err) => {
+        console.error("Error cargando modelo 3D:", err);
+        setError("Error al cargar el modelo 3D.");
         setLoading(false);
       }
     );
 
     const animate = () => {
-      const delta = clock.getDelta();
-
-      if (mixer) mixer.update(delta);
-
-      if (model) {
-        model.rotation.y += (targetRotationY - model.rotation.y) * 0.05;
-        model.rotation.x += (targetRotationX - model.rotation.x) * 0.05;
-        model.rotation.y += 0.003;
-
-        model.position.y = Math.sin(clock.elapsedTime) * 0.1;
-      }
-
-      renderer.render(scene, camera);
       requestAnimationFrame(animate);
+      if (model) {
+        model.rotation.y += (targetRotationY - model.rotation.y) * 0.1;
+        model.rotation.x += (targetRotationX - model.rotation.x) * 0.1;
+      }
+      renderer.render(scene, camera);
     };
 
     animate();
@@ -149,32 +128,23 @@ function Canvas3DScene() {
     return () => {
       window.removeEventListener("resize", handleResize);
       container.removeEventListener("mousemove", handleMouseMove);
-
-      renderer.dispose();
-
-      if (model) {
-        model.traverse((child) => {
-          if ((child as THREE.Mesh).isMesh) {
-            const mesh = child as THREE.Mesh;
-            mesh.geometry.dispose();
-
-            if (Array.isArray(mesh.material)) {
-              mesh.material.forEach((m) => m.dispose());
-            } else {
-              mesh.material.dispose();
-            }
-          }
-        });
-      }
-
       container.removeChild(renderer.domElement);
+      renderer.dispose();
     };
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full h-full relative">
-      {loading && <p className="absolute inset-0 flex items-center justify-center">Cargando...</p>}
-      {error && <p className="absolute inset-0 flex items-center justify-center text-red-500">{error}</p>}
+    <div className="w-full h-full absolute inset-0 cursor-move" ref={containerRef}>
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white/5 backdrop-blur-sm z-10">
+          <div className="w-8 h-8 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+        </div>
+      )}
+      {error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white/5 backdrop-blur-sm z-10">
+          <p className="text-red-400 bg-black/50 px-4 py-2 rounded-lg">{error}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -185,7 +155,8 @@ export const ProductSection3D = ({
   subtitle,
   description,
   reverse = false,
-  buttonText = 'Explorar',
+  buttonText = 'Explorar Modelo 3D',
+  buttonLink = '#', // 2. DESTRUCTURED HERE
   dark = false,
 }: ProductSection3DProps) => {
   return (
@@ -209,10 +180,10 @@ export const ProductSection3D = ({
             transition={{ duration: 0.8 }}
             className="flex-1 space-y-8"
           >
-            <div className="space-y-4">
+            <div>
               <span className={cn(
-                "text-sm font-bold uppercase tracking-widest",
-                dark ? "text-white/60" : "text-[#2e7d32]"
+                "inline-block px-3 py-1 rounded-full text-sm font-medium mb-4",
+                dark ? "bg-white/20 text-white" : "bg-[#1a432e]/10 text-[#1a432e]"
               )}>
                 {subtitle}
               </span>
@@ -226,15 +197,20 @@ export const ProductSection3D = ({
             )}>
               {description}
             </p>
-            <button className={cn(
-              "px-8 py-4 rounded-lg font-semibold flex items-center gap-2 transition-all group",
-              dark 
-                ? "bg-white text-[#1a432e] hover:bg-white/90" 
-                : "bg-[#1a432e] text-white hover:bg-[#2e7d32]"
-            )}>
+            
+            {/* 3. UPDATED BUTTON COMPONENT TO BE AN <a> TAG */}
+            <a 
+              href={buttonLink}
+              className={cn(
+                "px-8 py-4 rounded-lg font-semibold flex items-center gap-2 transition-all group w-fit",
+                dark 
+                  ? "bg-white text-[#1a432e] hover:bg-white/90" 
+                  : "bg-[#1a432e] text-white hover:bg-[#2e7d32]"
+              )}
+            >
               {buttonText}
               <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </motion.div>
 
           {/* 3D Canvas */}
@@ -248,7 +224,7 @@ export const ProductSection3D = ({
             <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-2xl">
               <Canvas3DScene />
               <div className="absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1 rounded text-sm backdrop-blur-sm">
-                Mueve el mouse para interactuar
+                Mueve el ratón para interactuar
               </div>
             </div>
           </motion.div>
