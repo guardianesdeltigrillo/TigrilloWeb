@@ -32,7 +32,7 @@ function App() {
           description="Un juego de trivia sobre el tigrillo!"
           image="https://images.unsplash.com/photo-1768566626252..."
           buttonText="Jugar Ahora"
-          buttonLink="/play/busqueda" {*https://guardianes-del-tigrillo.itch.io/triviazoo}
+          buttonLink="/play/busqueda" {https://guardianes-del-tigrillo.itch.io/triviazoo}
         />
 
         {/* 2. Triviazoo - 3D Interactive Section */}
