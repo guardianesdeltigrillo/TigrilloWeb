@@ -12,6 +12,7 @@ interface ProductSectionProps {
   image: string;
   reverse?: boolean;
   buttonText?: string;
+  buttonLink?: string; // 1. Added the prop to the interface
   dark?: boolean;
 }
 
@@ -23,6 +24,7 @@ export const ProductSection = ({
   image,
   reverse = false,
   buttonText = 'Explorar',
+  buttonLink = '#', // 2. Added it here with a default fallback
   dark = false,
 }: ProductSectionProps) => {
   return (
@@ -63,15 +65,20 @@ export const ProductSection = ({
             )}>
               {description}
             </p>
-            <button className={cn(
-              "px-8 py-4 rounded-lg font-semibold flex items-center gap-2 transition-all group",
-              dark 
-                ? "bg-white text-[#1a432e] hover:bg-white/90" 
-                : "bg-[#1a432e] text-white hover:bg-[#2e7d32]"
-            )}>
+            
+            {/* 3. Changed <button> to <a> and added href={buttonLink} */}
+            <a 
+              href={buttonLink}
+              className={cn(
+                "px-8 py-4 rounded-lg font-semibold inline-flex items-center gap-2 transition-all group w-fit",
+                dark 
+                  ? "bg-white text-[#1a432e] hover:bg-white/90" 
+                  : "bg-[#1a432e] text-white hover:bg-[#2e7d32]"
+              )}
+            >
               {buttonText}
               <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </motion.div>
 
           {/* Image */}
