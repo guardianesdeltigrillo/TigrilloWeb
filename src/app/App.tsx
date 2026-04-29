@@ -41,7 +41,7 @@ function App() {
           id="cedula-ar"
           subtitle="Realidad Aumentada Inmersiva"
           title="Cédula AR: Identidad Digital"
-          description="Explora la anatomía y los secretos del tigrillo desde una perspectiva única. Al escanear nuestras cédulas de identificación, desbloqueas una experiencia de realidad aumentada con modelos 3D detallados y datos científicos que cobran vida frente a tus ojos."
+          description="Explora los secretos de Jubi desde una perspectiva única. Al escanear nuestras cédulas de identificación, desbloqueas una experiencia de realidad aumentada con modelos 3D y datos científicos sobre el tigrillo."
           reverse
           dark
           buttonText="Explorar Cédulas"
