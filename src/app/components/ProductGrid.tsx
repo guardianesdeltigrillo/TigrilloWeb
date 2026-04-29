@@ -34,7 +34,7 @@ const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
     action: 'Jugar Trivia',
     color: 'from-amber-600/90 to-orange-900/90',
-    link: '#', // Add your link here
+    link: '#', https://guardianes-del-tigrillo.itch.io/triviazoo
   },
   {
     id: 'bot-jubi',
