@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { motion } from 'motion/react';
 import { ExternalLink } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { AnimatedText } from './AnimatedText';
 
 interface Partner {
   id: string;
@@ -60,22 +61,28 @@ export const Partners = () => {
     <section className="min-h-screen flex items-center py-20 px-6 md:px-24 bg-gradient-to-br from-[#f9f6f1] to-[#e8e3d8]">
       <div className="max-w-7xl mx-auto w-full">
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-[#2e7d32]/70 text-sm font-bold uppercase tracking-widest">
+          <span className="text-[#2e7d32]/70 text-sm font-bold uppercase tracking-widest inline-block mb-4">
             Trabajamos en Conjunto
           </span>
-          <h2 className="text-4xl md:text-6xl font-serif text-[#1a432e] mt-4 mb-6">
-            Nuestros Aliados
-          </h2>
-          <p className="text-[#1a432e]/80 text-lg max-w-3xl mx-auto">
-            Gracias a la colaboración de estas organizaciones e instituciones, 
-            podemos llevar adelante nuestro compromiso con la conservación del tigrillo lanudo
-          </p>
+          
+          <AnimatedText 
+            text="Nuestros Aliados"
+            el="h2"
+            className="text-4xl md:text-6xl font-serif text-[#1a432e] mb-6"
+            delay={0.1}
+          />
+          
+          <AnimatedText 
+            text="Gracias a la colaboración de estas organizaciones e instituciones, podemos llevar adelante nuestro compromiso con la conservación del tigrillo lanudo"
+            el="p"
+            className="text-[#1a432e]/80 text-lg max-w-3xl mx-auto"
+            delay={0.3}
+          />
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
@@ -91,16 +98,28 @@ export const Partners = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-center mt-16 p-8 bg-white/60 backdrop-blur-sm rounded-2xl border border-[#2e7d32]/20"
         >
-          <h3 className="text-2xl font-serif text-[#1a432e] mb-3">
-            ¿Quieres ser nuestro aliado?
-          </h3>
-          <p className="text-[#1a432e]/70 mb-6 max-w-2xl mx-auto">
-            Si tu organización comparte nuestra pasión por la conservación, 
-            únete a nuestro esfuerzo para proteger al tigrillo lanudo
-          </p>
-          <button className="px-8 py-3 bg-[#2e7d32] text-white rounded-full hover:bg-[#1a432e] transition-colors font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
+          <AnimatedText 
+            text="¿Quieres ser nuestro aliado?"
+            el="h3"
+            className="text-2xl font-serif text-[#1a432e] mb-3"
+            delay={0.4}
+          />
+          
+          <AnimatedText 
+            text="Si tu organización comparte nuestra pasión por la conservación, únete a nuestro esfuerzo para proteger al tigrillo lanudo"
+            el="p"
+            className="text-[#1a432e]/70 mb-6 max-w-2xl mx-auto"
+            delay={0.6}
+          />
+          
+          <motion.button 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1 }}
+            className="px-8 py-3 bg-[#2e7d32] text-white rounded-full hover:bg-[#1a432e] transition-colors font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200"
+          >
             Convertirse en Aliado
-          </button>
+          </motion.button>
         </motion.div>
       </div>
     </section>
@@ -118,7 +137,7 @@ const PartnerCard: FC<PartnerCardProps> = ({ partner, index }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }} // Retrasado para que salga después de los textos
       className="group relative bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-[#2e7d32]/20 overflow-hidden"
     >
       {partner.website && (
@@ -129,7 +148,6 @@ const PartnerCard: FC<PartnerCardProps> = ({ partner, index }) => {
         </div>
       )}
 
-      {/* AQUÍ ESTÁ LA MAGIA: grayscale y opacity-50 por defecto */}
       <div className="aspect-square mb-4 flex items-center justify-center overflow-hidden rounded-lg bg-transparent">
         <ImageWithFallback
           src={partner.logo}

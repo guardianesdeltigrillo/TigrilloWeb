@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Scan, Brain, MessageCircle, Video, ArrowRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { AnimatedText } from './AnimatedText';
 
 interface Product {
   id: string;
@@ -68,18 +69,26 @@ export const ProductGrid = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">
-            Explora Nuestro Ecosistema Digital
-          </h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Descubre formas interactivas de conectar con la naturaleza. Cada una de nuestras herramientas está diseñada para educar y movilizar la conservación del tigrillo lanudo.
-          </p>
+          {/* Título animado */}
+          <AnimatedText 
+            text="Explora Nuestro Ecosistema Digital"
+            el="h2"
+            className="text-4xl md:text-5xl font-serif text-white mb-6"
+            delay={0.1}
+          />
+          
+          {/* Párrafo animado */}
+          <AnimatedText 
+            text="Descubre formas interactivas de conectar con la naturaleza. Cada una de nuestras herramientas está diseñada para educar y movilizar la conservación del tigrillo lanudo."
+            el="p"
+            className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed"
+            delay={0.4}
+          />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -90,7 +99,7 @@ export const ProductGrid = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: 0.8 + (index * 0.1) }}
               className="group relative overflow-hidden rounded-2xl aspect-[4/3] md:aspect-auto md:h-[420px] shadow-2xl flex items-end cursor-pointer border border-white/10"
             >
               <div className="absolute inset-0 z-0">
@@ -138,17 +147,6 @@ export const ProductGrid = () => {
             </motion.a>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-16"
-        >
-          <p className="text-white/50 text-sm italic">
-            Estamos constantemente expandiendo nuestras fronteras digitales.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
