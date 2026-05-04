@@ -1,66 +1,101 @@
-import { motion } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
 import tigrilloImage from '../../imports/image-1.png';
-import { AnimatedText } from './AnimatedText'; 
+import { AnimatedText } from './AnimatedText';
 
 export const Hero = () => {
+  const ref = useRef(null);
+  
+  // 1. Hook para detectar el scroll en esta sección
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  // 2. Transformaciones Parallax (Multi-capa)
+  // La imagen baja lentamente (creando profundidad)
+  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  // La textura de puntos sube, creando contraste de movimiento
+  const yPattern = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  // El texto frontal se desvanece y sube ligeramente
+  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section id="inicio" className="relative h-screen w-full flex items-center justify-start px-6 md:px-24 overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+    <section ref={ref} id="inicio" className="relative h-screen w-full flex items-center justify-start px-6 md:px-24 overflow-hidden bg-black">
+      
+      {/* --- CAPA 1: FONDO PARALLAX --- */}
+      <motion.div 
+        className="absolute inset-0 z-0" 
+        style={{ y: yBg }}
+      >
+        {/* Usamos scale-110 para que al moverse no se vean los bordes cortados */}
         <img
           src={tigrilloImage}
           alt="Tigrillo Lanudo en su hábitat natural"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover scale-[1.15]"
         />
-        {/* Oscurecí un poco el gradiente para que el texto resalte más */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
+      </motion.div>
 
-      <div className="relative z-10 max-w-3xl">
+      {/* --- CAPA 2: TEXTURA GEOMÉTRICA (Alto Contraste) --- */}
+      <motion.div 
+        className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none"
+        style={{ 
+          y: yPattern,
+          backgroundImage: 'radial-gradient(#ffffff 1.5px, transparent 1.5px)',
+          backgroundSize: '24px 24px'
+        }} 
+      />
+
+      {/* --- CAPA 3: CONTENIDO FRONTAL --- */}
+      <motion.div 
+        className="relative z-10 max-w-3xl"
+        style={{ y: yText, opacity: opacityText }}
+      >
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-white text-sm font-medium mb-6 tracking-wide shadow-lg">
+          <span className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-sm text-white text-sm font-bold uppercase tracking-widest mb-6 shadow-lg">
             Leopardus tigrinus
           </span>
         </motion.div>
 
-        {/* 1. TÍTULO ANIMADO */}
         <AnimatedText 
           text="Tigrillo Lanudo"
           el="h1"
-          className="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight drop-shadow-xl"
+          className="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight drop-shadow-2xl"
           delay={0.2}
         />
 
-        {/* 2. DESCRIPCIÓN ANIMADA */}
         <AnimatedText 
           text="Un ecosistema digital inmersivo dedicado a la conservación, investigación y celebración de uno de los felinos silvestres más esquivos y fascinantes de los Andes."
           el="p"
-          className="text-xl md:text-2xl text-white/90 mb-10 leading-relaxed max-w-2xl font-light"
-          delay={0.6} // Empieza justo cuando el título está terminando
+          className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed max-w-2xl font-light"
+          delay={0.6} 
         />
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }} // Aparecen después de los textos
+          transition={{ duration: 0.8, delay: 1.2 }} 
           className="flex flex-wrap gap-4"
         >
-          <button className="px-8 py-4 bg-[#2e7d32] text-white rounded-lg font-semibold flex items-center gap-2 hover:bg-[#1a432e] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+          {/* Botones con bordes afilados para mantener el estilo geométrico */}
+          <button className="px-8 py-4 bg-[#2e7d32] text-white rounded-none font-semibold flex items-center gap-2 hover:bg-[#1a432e] transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
             Explorar Conservación
             <ChevronRight size={20} className="animate-pulse" />
           </button>
-          <button className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white rounded-lg font-semibold flex items-center gap-2 hover:bg-white/20 transition-all duration-300 hover:shadow-lg">
+          <button className="px-8 py-4 bg-transparent border border-white text-white rounded-none font-bold flex items-center gap-2 hover:bg-white hover:text-black transition-colors duration-300">
             Ver Galería
           </button>
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* Scroll indicator interactivo */}
+      {/* Indicador de Scroll */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -70,9 +105,9 @@ export const Hero = () => {
         <motion.div 
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center p-1 backdrop-blur-sm"
+          className="w-6 h-10 border-2 border-white/40 flex justify-center p-1 backdrop-blur-sm"
         >
-          <div className="w-1.5 h-2.5 bg-white rounded-full shadow-glow" />
+          <div className="w-1.5 h-2.5 bg-white shadow-glow" />
         </motion.div>
       </motion.div>
     </section>
