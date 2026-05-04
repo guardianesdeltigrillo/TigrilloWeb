@@ -16,7 +16,7 @@ interface Product {
   link: string;
 }
 
-// ... [Mantén tu arreglo const products: Product[] = [...] exactamente igual] ...
+// [Mantén tu const products: Product[] intacto aquí arriba]
 const products: Product[] = [
   {
     id: 'cedula-ar',
@@ -68,23 +68,23 @@ export const ProductGrid = () => {
     offset: ["start end", "end start"]
   });
 
-  // Velocidades parallax para los distintos elementos decorativos
+  // Efectos Parallax del fondo
   const yShape1 = useTransform(scrollYProgress, [0, 1], ["-15%", "25%"]);
   const yShape2 = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
   const yShape3 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  
+  // Efecto Parallax interno para TODAS las imágenes de las tarjetas
+  const yCardImage = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
     <section ref={ref} className="py-24 bg-[#0d2419] px-6 relative overflow-hidden">
       
       {/* CAPA DE FONDO PARALLAX GEOMÉTRICO */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        {/* Cuadro angulado gigante */}
         <motion.div 
           style={{ y: yShape1, rotate: 15 }} 
           className="absolute -top-10 -left-32 w-[500px] h-[500px] border-[40px] border-emerald-500/10 rounded-sm"
         />
-        
-        {/* Textura Halftone de alto contraste */}
         <motion.div 
           style={{ 
             y: yShape2, 
@@ -93,8 +93,6 @@ export const ProductGrid = () => {
           }} 
           className="absolute top-1/4 -right-10 w-2/3 h-2/3"
         />
-        
-        {/* Acento geométrico inferior */}
         <motion.div 
           style={{ y: yShape3, rotate: -25 }} 
           className="absolute -bottom-20 right-20 w-80 h-80 bg-white/5 shadow-2xl"
@@ -134,14 +132,17 @@ export const ProductGrid = () => {
               transition={{ duration: 0.6, delay: 0.8 + (index * 0.1) }}
               className="group relative overflow-hidden rounded-none aspect-[4/3] md:aspect-auto md:h-[420px] shadow-2xl flex items-end cursor-pointer border border-white/10"
             >
-              {/* Imagen con un ligero zoom parallax al hacer hover */}
-              <div className="absolute inset-0 z-0">
+              {/* IMAGEN DE LA TARJETA CON PARALLAX (yCardImage) */}
+              <motion.div 
+                style={{ y: yCardImage }} 
+                className="absolute inset-0 z-0"
+              >
                 <ImageWithFallback
                   src={product.image}
                   alt={product.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover scale-[1.25] transition-transform duration-700 group-hover:scale-[1.35]"
                 />
-              </div>
+              </motion.div>
               
               <div className={cn(
                 "absolute inset-0 z-10 bg-gradient-to-t opacity-90 transition-opacity duration-300 group-hover:opacity-95",
