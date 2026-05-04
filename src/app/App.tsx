@@ -7,12 +7,11 @@ import { ProductSection3D } from './components/ProductSection3D';
 import { ProductGrid } from './components/ProductGrid';
 import { Partners } from './components/Partners';
 import { Footer } from './components/Footer';
+import { CustomCursor } from './components/CustomCursor'; // 1. Importamos el cursor
 
 function App() {
-  // 1. Hook para detectar el scroll
   const { scrollYProgress } = useScroll();
   
-  // 2. Le damos un efecto de "resorte" (spring) para que no se vea rígido
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -20,9 +19,12 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f9f6f1] overflow-x-hidden scroll-smooth relative">
+    // 2. AÑADIMOS 'cursor-none' a las clases del contenedor principal
+    <div className="min-h-screen bg-[#f9f6f1] overflow-x-hidden scroll-smooth relative cursor-none">
       
-      {/* 3. La barra animada */}
+      {/* 3. Colocamos el componente del cursor aquí arriba */}
+      <CustomCursor />
+
       <motion.div
         className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2e7d32] to-[#4caf50] z-[100]"
         style={{ scaleX, transformOrigin: "0%" }}
