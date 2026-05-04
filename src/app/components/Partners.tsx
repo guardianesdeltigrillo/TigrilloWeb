@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { motion } from 'motion/react';
 import { ExternalLink } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
@@ -7,11 +7,10 @@ interface Partner {
   id: string;
   name: string;
   logo: string;
-  website?: string; // URL opcional
-  description?: string; // Descripción opcional
+  website?: string;
+  description?: string;
 }
 
-// JSON con los datos de los aliados
 const partnersData: Partner[] = [
   {
     id: '1',
@@ -60,7 +59,6 @@ export const Partners = () => {
   return (
     <section className="min-h-screen flex items-center py-20 px-6 md:px-24 bg-gradient-to-br from-[#f9f6f1] to-[#e8e3d8]">
       <div className="max-w-7xl mx-auto w-full">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -80,14 +78,12 @@ export const Partners = () => {
           </p>
         </motion.div>
 
-        {/* Grid de aliados */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
           {partnersData.map((partner, index) => (
             <PartnerCard key={partner.id} partner={partner} index={index} />
           ))}
         </div>
 
-        {/* Call to action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -111,13 +107,12 @@ export const Partners = () => {
   );
 };
 
-// Componente individual para cada aliado
 interface PartnerCardProps {
   partner: Partner;
   index: number;
 }
 
-const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
+const PartnerCard: FC<PartnerCardProps> = ({ partner, index }) => {
   const content = (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -126,7 +121,6 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group relative bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-[#2e7d32]/30 overflow-hidden"
     >
-      {/* Indicador de enlace externo */}
       {partner.website && (
         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="bg-[#2e7d32] text-white rounded-full p-1.5">
@@ -135,7 +129,6 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
         </div>
       )}
 
-      {/* Logo */}
       <div className="aspect-square mb-4 flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-[#f9f6f1] to-[#e8e3d8]">
         <ImageWithFallback
           src={partner.logo}
@@ -144,24 +137,20 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
         />
       </div>
 
-      {/* Nombre */}
       <h3 className="text-center text-sm font-semibold text-[#1a432e] mb-2 group-hover:text-[#2e7d32] transition-colors">
         {partner.name}
       </h3>
 
-      {/* Descripción (opcional) */}
       {partner.description && (
         <p className="text-xs text-[#1a432e]/60 text-center line-clamp-2">
           {partner.description}
         </p>
       )}
 
-      {/* Efecto de brillo al hover */}
       <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-transparent group-hover:via-white/20 transition-all duration-300 pointer-events-none" />
     </motion.div>
   );
 
-  // Si tiene website, envolver en un enlace
   if (partner.website) {
     return (
       <a
@@ -175,6 +164,5 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
     );
   }
 
-  // Si no tiene website, solo mostrar el contenido
   return content;
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect, MouseEvent, ElementType } from "react";
 import { motion } from "motion/react";
 import {
   Home,
@@ -15,7 +15,7 @@ import { cn } from "../../lib/utils";
 interface NavItem {
   label: string;
   href: string;
-  icon: React.ElementType;
+  icon: ElementType;
 }
 
 const navItems: NavItem[] = [
@@ -27,10 +27,10 @@ const navItems: NavItem[] = [
 ];
 
 export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -38,10 +38,7 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-  ) => {
+  const scrollToSection = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
@@ -60,7 +57,7 @@ export const Navbar = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
         isScrolled
           ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#e2e2e2]"
-          : "bg-transparent",
+          : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -80,7 +77,7 @@ export const Navbar = () => {
               onClick={(e) => scrollToSection(e, item.href)}
               className={cn(
                 "flex items-center gap-2 text-sm font-medium transition-colors hover:opacity-70",
-                isScrolled ? "text-[#1a432e]" : "text-white",
+                isScrolled ? "text-[#1a432e]" : "text-white"
               )}
             >
               <item.icon size={16} />
@@ -93,7 +90,7 @@ export const Navbar = () => {
         <button
           className={cn(
             "md:hidden p-2",
-            isScrolled ? "text-[#1a432e]" : "text-white",
+            isScrolled ? "text-[#1a432e]" : "text-white"
           )}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
@@ -12,7 +12,7 @@ interface ProductSection3DProps {
   description: string;
   reverse?: boolean;
   buttonText?: string;
-  buttonLink?: string; // 1. ADDED PROPS HERE
+  buttonLink?: string;
   dark?: boolean;
 }
 
@@ -156,7 +156,7 @@ export const ProductSection3D = ({
   description,
   reverse = false,
   buttonText = 'Explorar Modelo 3D',
-  buttonLink = '#', // 2. DESTRUCTURED HERE
+  buttonLink = '#',
   dark = false,
 }: ProductSection3DProps) => {
   return (
@@ -198,7 +198,6 @@ export const ProductSection3D = ({
               {description}
             </p>
             
-            {/* 3. UPDATED BUTTON COMPONENT TO BE AN <a> TAG */}
             <a 
               href={buttonLink}
               className={cn(

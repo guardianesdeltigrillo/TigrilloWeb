@@ -1,4 +1,4 @@
-import React from 'react';
+import { ElementType } from 'react';
 import { motion } from 'motion/react';
 import { Scan, Brain, MessageCircle, Video, ArrowRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
@@ -8,7 +8,7 @@ interface Product {
   id: string;
   title: string;
   description: string;
-  icon: React.ElementType;
+  icon: ElementType;
   image: string;
   action: string;
   color: string;
@@ -61,7 +61,6 @@ const products: Product[] = [
 export const ProductGrid = () => {
   return (
     <section className="py-24 bg-[#1a432e] px-6 relative overflow-hidden">
-      {/* Elementos decorativos sutiles de fondo */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-10">
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-white rounded-full blur-3xl" />
         <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-emerald-500 rounded-full blur-3xl" />
@@ -102,7 +101,6 @@ export const ProductGrid = () => {
                 />
               </div>
               
-              {/* Overlay de gradiente dinámico */}
               <div className={cn(
                 "absolute inset-0 z-10 bg-gradient-to-t opacity-90 transition-opacity duration-300 group-hover:opacity-95",
                 product.color
@@ -134,7 +132,6 @@ export const ProductGrid = () => {
                 </div>
               </div>
 
-              {/* Efecto de resplandor interactivo */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent" />
               </div>
@@ -142,7 +139,6 @@ export const ProductGrid = () => {
           ))}
         </div>
 
-        {/* Call to action sutil */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

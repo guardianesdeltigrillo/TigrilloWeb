@@ -1,7 +1,7 @@
-import React from 'react';
 import { motion } from 'motion/react';
-import { ChevronRight, Play } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import tigrilloImage from '../../imports/image-1.png';
+import { AnimatedText } from './AnimatedText';
 
 export const Hero = () => {
   return (
