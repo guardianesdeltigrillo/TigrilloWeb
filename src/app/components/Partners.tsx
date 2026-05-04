@@ -119,21 +119,22 @@ const PartnerCard: FC<PartnerCardProps> = ({ partner, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-[#2e7d32]/30 overflow-hidden"
+      className="group relative bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-[#2e7d32]/20 overflow-hidden"
     >
       {partner.website && (
-        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="bg-[#2e7d32] text-white rounded-full p-1.5">
+        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+          <div className="bg-[#2e7d32] text-white rounded-full p-1.5 shadow-md">
             <ExternalLink className="w-3 h-3" />
           </div>
         </div>
       )}
 
-      <div className="aspect-square mb-4 flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-[#f9f6f1] to-[#e8e3d8]">
+      {/* AQUÍ ESTÁ LA MAGIA: grayscale y opacity-50 por defecto */}
+      <div className="aspect-square mb-4 flex items-center justify-center overflow-hidden rounded-lg bg-transparent">
         <ImageWithFallback
           src={partner.logo}
           alt={partner.name}
-          className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+          className="w-full h-full object-contain p-4 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 ease-out"
         />
       </div>
 
@@ -142,12 +143,10 @@ const PartnerCard: FC<PartnerCardProps> = ({ partner, index }) => {
       </h3>
 
       {partner.description && (
-        <p className="text-xs text-[#1a432e]/60 text-center line-clamp-2">
+        <p className="text-xs text-[#1a432e]/60 text-center line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 h-0 group-hover:h-auto">
           {partner.description}
         </p>
       )}
-
-      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-transparent group-hover:via-white/20 transition-all duration-300 pointer-events-none" />
     </motion.div>
   );
 

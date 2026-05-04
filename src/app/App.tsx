@@ -1,3 +1,4 @@
+import { motion, useScroll, useSpring } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Stats } from './components/Stats';
@@ -8,23 +9,32 @@ import { Partners } from './components/Partners';
 import { Footer } from './components/Footer';
 
 function App() {
+  // 1. Hook para detectar el scroll
+  const { scrollYProgress } = useScroll();
+  
+  // 2. Le damos un efecto de "resorte" (spring) para que no se vea rígido
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
-    <div className="min-h-screen bg-[#f9f6f1] overflow-x-hidden scroll-smooth">
+    <div className="min-h-screen bg-[#f9f6f1] overflow-x-hidden scroll-smooth relative">
+      
+      {/* 3. La barra animada */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2e7d32] to-[#4caf50] z-[100]"
+        style={{ scaleX, transformOrigin: "0%" }}
+      />
+
       <Navbar />
       
       <main>
-        {/* Hero Section */}
         <Hero />
-        
-        {/* Intro & Stats Section */}
         <Stats />
-        
-        {/* Product Grid - Ecosistema de productos con fondo verde */}
         <ProductGrid />
         
-        {/* Secciones Detalladas de Productos */}
-        
-        {/* 1. Triviazoo */}
         <ProductSection
           id="triviazoo"
           subtitle="Gamificación Educativa"
@@ -35,19 +45,17 @@ function App() {
           buttonLink="https://guardianes-del-tigrillo.itch.io/triviazoo"
         />
 
-        {/* 2. Cedula AR - Sección 3D */}
         <ProductSection3D
           id="cedula-ar"
           subtitle="Realidad Aumentada Inmersiva"
           title="Cédula AR: Identidad Digital"
-          description="Explora los secretos de Jubi desde una perspectiva única. Al escanear nuestras cédulas de identificación, desbloqueas una experiencia de realidad aumentada con modelos 3D y datos científicos sobre el tigrillo."
+          description="Explora la anatomía y los secretos del tigrillo desde una perspectiva única. Al escanear nuestras cédulas de identificación, desbloqueas una experiencia de realidad aumentada con modelos 3D detallados y datos científicos que cobran vida frente a tus ojos."
           reverse
           dark
           buttonText="Explorar Cédulas"
           buttonLink="#cedula-ar" 
         />
 
-        {/* 3. Mitazoo Entrevista */}
         <ProductSection
           id="entrevista"
           subtitle="Ciencia y Conservación"
@@ -55,10 +63,9 @@ function App() {
           description="Escucha las historias de quienes están en la primera línea de la protección silvestre. Acompañamos a biólogos y expertos en una serie de entrevistas profundas donde descubrimos los retos, las victorias y la importancia vital de preservar a los felinos de Sudamérica."
           image="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d"
           buttonText="Ver Entrevista"
-          buttonLink="https://www.youtube.com" // Cambiar por el link real
+          buttonLink="#entrevista" 
         />
 
-        {/* 4. Bot Jubi */}
         <ProductSection
           id="bot-jubi"
           subtitle="Inteligencia Artificial con Propósito"
@@ -68,10 +75,9 @@ function App() {
           reverse
           dark
           buttonText="Chatear con Jubi"
-          buttonLink="https://wa.me/tu-numero" // Link a WhatsApp
+          buttonLink="https://wa.me/tu-numero" 
         />
     
-        {/* Partners Section */}
         <Partners />
       </main>
 
