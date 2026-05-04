@@ -4,6 +4,7 @@ import { ChevronRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { AnimatedText } from './AnimatedText'; // <-- Importamos la animación
 
 interface ProductSection3DProps {
   id: string;
@@ -16,7 +17,7 @@ interface ProductSection3DProps {
   dark?: boolean;
 }
 
-// Componente Canvas 3D que carga modelo GLB desde CDN
+// ... [Mantén aquí el componente Canvas3DScene intacto tal como lo tenías] ...
 function Canvas3DScene() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
@@ -44,15 +45,14 @@ function Canvas3DScene() {
 
     container.appendChild(renderer.domElement);
 
-    // Luces
-    scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+    const sceneLight = new THREE.AmbientLight(0xffffff, 1.5);
+    scene.add(sceneLight);
 
     const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
     dirLight.position.set(5, 10, 5);
     dirLight.castShadow = true;
     scene.add(dirLight);
 
-    // Piso
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(20, 20),
       new THREE.ShadowMaterial({ opacity: 0.3 })
@@ -80,9 +80,9 @@ function Canvas3DScene() {
 
     loader.load(
       "https://threejs.org/examples/models/gltf/Horse.glb",
-      (gltf) => {
+      (gltf: any) => {
         model = gltf.scene;
-        model.traverse((child) => {
+        model.traverse((child: any) => {
           if ((child as THREE.Mesh).isMesh) {
             const mesh = child as THREE.Mesh;
             mesh.castShadow = true;
@@ -99,7 +99,7 @@ function Canvas3DScene() {
         setLoading(false);
       },
       undefined,
-      (err) => {
+      (err: any) => {
         console.error("Error cargando modelo 3D:", err);
         setError("Error al cargar el modelo 3D.");
         setLoading(false);
@@ -187,16 +187,26 @@ export const ProductSection3D = ({
               )}>
                 {subtitle}
               </span>
-              <h2 className="text-4xl md:text-5xl font-serif leading-tight">
-                {title}
-              </h2>
+              
+              {/* Título Animado */}
+              <AnimatedText 
+                text={title}
+                el="h2"
+                className="text-4xl md:text-5xl font-serif leading-tight"
+                delay={0.2}
+              />
             </div>
-            <p className={cn(
-              "text-lg leading-relaxed",
-              dark ? "text-white/80" : "text-[#555]"
-            )}>
-              {description}
-            </p>
+
+            {/* Descripción Animada */}
+            <AnimatedText 
+              text={description}
+              el="p"
+              className={cn(
+                "text-lg leading-relaxed",
+                dark ? "text-white/80" : "text-[#555]"
+              )}
+              delay={0.4}
+            />
             
             <a 
               href={buttonLink}

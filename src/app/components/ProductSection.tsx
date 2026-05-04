@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { AnimatedText } from './AnimatedText'; // <-- Importamos la animación
 
 interface ProductSectionProps {
   id: string;
@@ -11,7 +12,7 @@ interface ProductSectionProps {
   image: string;
   reverse?: boolean;
   buttonText?: string;
-  buttonLink?: string; // 1. Added the prop to the interface
+  buttonLink?: string;
   dark?: boolean;
 }
 
@@ -23,7 +24,7 @@ export const ProductSection = ({
   image,
   reverse = false,
   buttonText = 'Explorar',
-  buttonLink = '#', // 2. Added it here with a default fallback
+  buttonLink = '#',
   dark = false,
 }: ProductSectionProps) => {
   return (
@@ -54,18 +55,27 @@ export const ProductSection = ({
               )}>
                 {subtitle}
               </span>
-              <h2 className="text-4xl md:text-5xl font-serif leading-tight">
-                {title}
-              </h2>
+              
+              {/* Título Animado */}
+              <AnimatedText 
+                text={title}
+                el="h2"
+                className="text-4xl md:text-5xl font-serif leading-tight"
+                delay={0.2}
+              />
             </div>
-            <p className={cn(
-              "text-lg leading-relaxed",
-              dark ? "text-white/80" : "text-[#555]"
-            )}>
-              {description}
-            </p>
+
+            {/* Descripción Animada */}
+            <AnimatedText 
+              text={description}
+              el="p"
+              className={cn(
+                "text-lg leading-relaxed",
+                dark ? "text-white/80" : "text-[#555]"
+              )}
+              delay={0.4}
+            />
             
-            {/* 3. Changed <button> to <a> and added href={buttonLink} */}
             <a 
               href={buttonLink}
               className={cn(
