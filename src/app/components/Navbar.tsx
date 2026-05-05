@@ -19,11 +19,12 @@ interface NavItem {
   icon: ElementType;
 }
 
+// Actualizamos el label de Jubi
 const navItems: NavItem[] = [
   { label: "Inicio", href: "#inicio", icon: Home },
   { label: "Acerca de", href: "#acerca-de", icon: BookOpen },
   { label: "Importancia", href: "#importancia", icon: Globe },
-  { label: "Jubi 3D", href: "#jubi-3d", icon: Box },
+  { label: "Jubi El Tigrillo", href: "#jubi-3d", icon: Box },
   { label: "Ecosistema", href: "#product-grid", icon: LayoutGrid },
   { label: "Aliados", href: "#aliados", icon: Users },
 ];

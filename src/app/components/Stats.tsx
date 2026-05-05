@@ -21,7 +21,8 @@ const stats = [
 
 export const Stats = () => {
   return (
-    <section className="py-24 bg-[#f9f6f1] px-6">
+    // 1. Cambiamos el fondo a verde oscuro
+    <section className="py-24 bg-[#1a432e] px-6">
       <div className="max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0 }}
@@ -29,19 +30,18 @@ export const Stats = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          {/* Título animado */}
+          {/* Textos invertidos a blanco */}
           <AnimatedText 
             text="El Tigrillo Lanudo"
             el="h2"
-            className="text-4xl md:text-5xl font-serif text-[#1a432e] mb-6"
+            className="text-4xl md:text-5xl font-serif text-white mb-6"
             delay={0.1}
           />
           
-          {/* Párrafo animado */}
           <AnimatedText 
             text="La oncilla, también conocida como tigrillo lanudo o pequeño gato manchado, es un felino salvaje nativo de los bosques nubosos y regiones montañosas de América Central y del Sur. Con su distintivo pelaje moteado y naturaleza tímida, este felino esquivo enfrenta crecientes amenazas por la pérdida y fragmentación del hábitat."
             el="p"
-            className="text-lg text-[#555] max-w-3xl mx-auto leading-relaxed"
+            className="text-lg text-white/80 max-w-3xl mx-auto leading-relaxed"
             delay={0.3}
           />
         </motion.div>
@@ -56,11 +56,12 @@ export const Stats = () => {
               transition={{ delay: 0.6 + (index * 0.2), duration: 0.5 }}
               className="flex flex-col items-center"
             >
-              <div className="w-32 h-32 rounded-full border border-[#1a432e]/10 bg-white flex items-center justify-center mb-6 shadow-sm">
-                <span className="text-3xl font-bold text-[#1a432e]">{stat.value}</span>
+              {/* 2. Círculos con estilo cristal translucido */}
+              <div className="w-32 h-32 rounded-full border border-white/20 bg-white/10 flex items-center justify-center mb-6 shadow-sm backdrop-blur-sm">
+                <span className="text-3xl font-bold text-white">{stat.value}</span>
               </div>
-              <h3 className="text-xl font-bold text-[#1a432e] mb-1">{stat.unit}</h3>
-              <p className="text-[#666] text-sm">{stat.label}</p>
+              <h3 className="text-xl font-bold text-white mb-1">{stat.unit}</h3>
+              <p className="text-white/60 text-sm">{stat.label}</p>
             </motion.div>
           ))}
         </div>

@@ -15,7 +15,8 @@ export const Footer = () => {
             <ul className="space-y-4 text-white/70">
               <li><a href="#acerca-de" className="hover:text-white transition-colors">Acerca de Zooteka</a></li>
               <li><a href="#importancia" className="hover:text-white transition-colors">Impacto Ambiental</a></li>
-              <li><a href="#jubi-3d" className="hover:text-white transition-colors">Jubi en 3D</a></li>
+              {/* Actualizamos el nombre aquí también */}
+              <li><a href="#jubi-3d" className="hover:text-white transition-colors">Jubi El Tigrillo</a></li>
               <li><a href="#product-grid" className="hover:text-white transition-colors">Ecosistema Digital</a></li>
             </ul>
           </div>

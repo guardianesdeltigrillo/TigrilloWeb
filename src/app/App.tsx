@@ -9,6 +9,10 @@ import { Partners } from './components/Partners';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 
+// 1. IMPORTA TUS IMÁGENES AQUÍ:
+import imagenAcercaDe from '../../imports/tu-imagen-acerca.png'; // Reemplaza con tu archivo real
+import imagenImportancia from '../../imports/tu-imagen-importancia.jpeg'; // Reemplaza con tu archivo real
+
 function App() {
   const { scrollYProgress } = useScroll();
   
@@ -20,7 +24,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#f9f6f1] overflow-x-hidden scroll-smooth relative cursor-none">
-      
       <CustomCursor />
 
       <motion.div
@@ -31,50 +34,44 @@ function App() {
       <Navbar />
       
       <main>
-        {/* 1. Hero */}
         <Hero />
-        
-        {/* 2. Stats (Estadísticas breves) */}
         <Stats />
         
-        {/* 3. Acerca de */}
+        {/* Acerca de */}
         <ProductSection
           id="acerca-de"
           subtitle="Museo Digital"
           title="Acerca de Zooteka"
           description="Zooteka es una enciclopedia multimedia interactiva diseñada para la divulgación y protección del Leopardus tigrinus. Nuestro objetivo es crear un espacio puramente educativo y de exploración visual que conecte a las personas con la riqueza natural de nuestros ecosistemas."
-          image="https://images.unsplash.com/photo-1456926631375-92c8ce872def?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+          image={imagenAcercaDe} // 2. USA LA VARIABLE AQUÍ (sin comillas)
           buttonText="Conocer Más"
           buttonLink="#inicio"
         />
 
-        {/* 4. Importancia */}
+        {/* Importancia */}
         <ProductSection
           id="importancia"
           subtitle="Impacto Ambiental"
           title="¿Por qué es vital su protección?"
           description="El tigrillo lanudo actúa como un guardián silencioso del equilibrio natural. Proteger su hábitat beneficia a innumerables especies y comunidades, asegurando la vitalidad y la preservación de los bosques y de regiones montañosas como el Altiplano que dependen de este frágil ecosistema."
-          image="https://images.unsplash.com/photo-1511497584788-876760111969?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+          image={imagenImportancia} // 2. USA LA VARIABLE AQUÍ (sin comillas)
           reverse
           dark
           buttonText="Súmate a la Causa"
           buttonLink="#aliados" 
         />
 
-        {/* 5. Jubi 3D */}
+        {/* Jubi 3D (No usa imagen estática, usa el canvas 3D) */}
         <ProductSection3D
           id="jubi-3d"
           subtitle="Exploración Anatómica"
-          title="Conoce a Jubi en 3D"
-          description="Interactúa con Jubi, nuestro modelo tridimensional de alta fidelidad. Observa de cerca los detalles de su pelaje moteado y su fisionomía, características evolutivas que le permiten ser un cazador sigiloso en los densos bosques nubosos."
+          title="Conoce a Jubi el tigrillo"
+          description="Jubi es nuestro amigo el tigrillo, es un poco timido, pero solo es un fotógrafo que busca tranquilidad, tiene hábitos nocturnos, aunque es activo a veces de día, le encanta trepar árboles y escuchar musica en soledad."
           buttonText="Interactuar con el Modelo"
           buttonLink="#jubi-3d" 
         />
 
-        {/* 6. Product Grid (Ecosistema de links externos) */}
         <ProductGrid />
-    
-        {/* 7. Aliados */}
         <Partners />
       </main>
 

@@ -4,6 +4,11 @@ import { ExternalLink } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AnimatedText } from './AnimatedText';
 
+// 1. IMPORTA LOS LOGOS AQUÍ:
+import logoFundacion from '../../imports/logo-usb-vertical.png'; // Reemplaza con tus archivos reales
+import logoZoo from '../../imports/logo-zoo-santacruz.png';
+import logoUAndina from '../../imports/logo-andina.png';
+
 interface Partner {
   id: string;
   name: string;
@@ -15,46 +20,27 @@ interface Partner {
 const partnersData: Partner[] = [
   {
     id: '1',
-    name: 'Fundación Naturaleza',
-    logo: 'https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
-    website: 'https://fundacionnaturaleza.org',
-    description: 'Conservación de especies en peligro'
+    name: 'Universidad De San Buenaventura',
+    logo: logoFundacion, // 2. USA LA VARIABLE AQUÍ
+    website: 'https://www.usbbog.edu.co/',
+    description: 'Ser más que tener'
   },
   {
     id: '2',
-    name: 'Zoológico Nacional',
-    logo: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
-    website: 'https://zoologiconacional.gov',
-    description: 'Protección y cuidado de fauna silvestre'
+    name: 'Zoológico Santa Cruz',
+    logo: logoZoo, // 2. USA LA VARIABLE AQUÍ
+    website: 'https://zoosantacruz.org/',
+    description: 'Educación para la conservación'
   },
   {
     id: '3',
-    name: 'Universidad Andina',
-    logo: 'https://images.unsplash.com/photo-1562774053-701939374585?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
-    website: 'https://uandina.edu',
-    description: 'Investigación en biodiversidad'
-  },
-  {
-    id: '4',
-    name: 'Eco Partners',
-    logo: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
-    description: 'Apoyo en conservación comunitaria'
-  },
-  {
-    id: '5',
-    name: 'Wildlife Conservation',
-    logo: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
-    website: 'https://wildlifeconservation.org',
-    description: 'Protección global de especies'
-  },
-  {
-    id: '6',
-    name: 'Comunidad Verde',
-    logo: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
-    website: 'https://comunidadverde.org',
-    description: 'Educación ambiental'
+    name: 'Guardianes Del Tigrillo',
+    logo: logoUAndina, // 2. USA LA VARIABLE AQUÍ
+    website: 'https://tigrillo-web-zeta.vercel.app/#inicio',
+    description: 'Investigación en protección del tirgillo'
   },
 ];
+
 
 export const Partners = () => {
   return (
