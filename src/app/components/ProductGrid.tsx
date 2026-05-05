@@ -16,7 +16,7 @@ interface Product {
   link: string;
 }
 
-// [Mantén tu const products: Product[] intacto aquí arriba]
+// 1. ACTUALIZAMOS LOS LINKS POR LAS URLs DIRECTAS
 const products: Product[] = [
   {
     id: 'cedula-ar',
@@ -24,9 +24,9 @@ const products: Product[] = [
     description: 'Lleva la conservación a tu realidad. Escanea la cédula del tigrillo y desbloquea un modelo 3D interactivo para explorar sus rasgos y secretos en un entorno inmersivo.',
     icon: Scan,
     image: 'https://images.unsplash.com/photo-1617802690658-1173a812650d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-    action: 'Escanear Ahora',
+    action: 'Abrir Cédulas',
     color: 'from-emerald-500/80 to-green-900/90',
-    link: '#cedula-ar', 
+    link: 'https://tu-dominio.com/cedula-ar', // <-- Reemplazar con el link real de la experiencia AR
   },
   {
     id: 'triviazoo',
@@ -34,9 +34,9 @@ const products: Product[] = [
     description: '¿Cuánto sabes sobre el Guardián de los Andes? Pon a prueba tu destreza en un desafío de trivia diseñado para aprender divirtiéndote sobre la biodiversidad y la protección del tigrillo.',
     icon: Brain,
     image: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-    action: 'Jugar Trivia',
+    action: 'Jugar en itch.io',
     color: 'from-amber-500/80 to-orange-900/90',
-    link: '#triviazoo',
+    link: 'https://guardianes-del-tigrillo.itch.io/triviazoo', // <-- Link de itch.io
   },
   {
     id: 'bot-jubi',
@@ -44,9 +44,9 @@ const products: Product[] = [
     description: 'Conversa con el alma del bosque. Jubi, nuestro bot inteligente, te acompaña en una charla dinámica para resolver tus dudas y enseñarte todo sobre su hábitat en tiempo real.',
     icon: MessageCircle,
     image: 'https://images.unsplash.com/photo-1614680376593-902f74cf0d41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-    action: 'Chatear con Jubi',
+    action: 'Abrir WhatsApp',
     color: 'from-teal-500/80 to-cyan-900/90',
-    link: '#bot-jubi', 
+    link: 'https://wa.me/tunumerodetelefono', // <-- Reemplazar con el link de WhatsApp
   },
   {
     id: 'entrevista',
@@ -54,9 +54,9 @@ const products: Product[] = [
     description: 'Voces expertas por la vida silvestre. Sumérgete en una charla profunda con los especialistas que dedican su vida a la protección y cuidado del tigrillo en un encuentro exclusivo.',
     icon: Video,
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-    action: 'Ver Entrevista',
+    action: 'Ver en YouTube',
     color: 'from-blue-500/80 to-indigo-900/90',
-    link: '#entrevista',
+    link: 'https://www.youtube.com/', // <-- Reemplazar con el link de la entrevista
   }
 ];
 
@@ -68,18 +68,14 @@ export const ProductGrid = () => {
     offset: ["start end", "end start"]
   });
 
-  // Efectos Parallax del fondo
   const yShape1 = useTransform(scrollYProgress, [0, 1], ["-15%", "25%"]);
   const yShape2 = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
   const yShape3 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  
-  // Efecto Parallax interno para TODAS las imágenes de las tarjetas
   const yCardImage = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
     <section ref={ref} className="py-24 bg-[#0d2419] px-6 relative overflow-hidden">
       
-      {/* CAPA DE FONDO PARALLAX GEOMÉTRICO */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div 
           style={{ y: yShape1, rotate: 15 }} 
@@ -126,13 +122,14 @@ export const ProductGrid = () => {
             <motion.a
               href={product.link}
               key={product.id}
+              target="_blank"             // 2. AÑADIMOS ESTO para abrir en nueva pestaña
+              rel="noopener noreferrer"   // 3. AÑADIMOS ESTO por seguridad
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.8 + (index * 0.1) }}
               className="group relative overflow-hidden rounded-none aspect-[4/3] md:aspect-auto md:h-[420px] shadow-2xl flex items-end cursor-pointer border border-white/10"
             >
-              {/* IMAGEN DE LA TARJETA CON PARALLAX (yCardImage) */}
               <motion.div 
                 style={{ y: yCardImage }} 
                 className="absolute inset-0 z-0"
