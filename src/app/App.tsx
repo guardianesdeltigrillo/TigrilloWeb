@@ -39,13 +39,19 @@ function App() {
         <Hero />
         <Stats />
         
-        {/* Acerca de */}
+    {/* Acerca de */}
         <ProductSection
           id="acerca-de"
-          subtitle="Museo Digital"
-          title="Acerca de Zooteka"
-          description="Zooteka es una enciclopedia multimedia interactiva diseñada para la divulgación y protección del Leopardus tigrinus. Nuestro objetivo es crear un espacio puramente educativo y de exploración visual que conecte a las personas con la riqueza natural de nuestros ecosistemas."
-          image={imagenAcercaDe} // 2. USA LA VARIABLE AQUÍ (sin comillas)
+          subtitle="Proyecto Ingeniería Multimedia"
+          title="Acerca de Los Guardianes Del Tigrillo"
+          description="Nuestro proyecto busca sensibilizar a las poblaciones sobre las amenazas que sufre el tigrillo lanudo cercanas al altiplano cundiboyacense por medio de una estrategia transmedia."
+          image={imagenAcercaDe}
+          objectives={[
+            "Investigar la importancia y las problematicas que rodean al tigrillo lanudo.",
+            "Diseñar un personaje con su narrativa y caracterizacion acorde a las problematica que se busca impactar.",
+            "Implementar los productos realizados a cada publico objetivo.",
+            "Evaluar la eficacia de la estrategia con respecto a la concientización del tigrillo lanudo y sus problematicas."
+          ]}
           buttonText="Conocer Más"
           buttonLink="#inicio"
         />

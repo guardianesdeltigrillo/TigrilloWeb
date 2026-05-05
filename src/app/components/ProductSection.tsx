@@ -15,6 +15,7 @@ interface ProductSectionProps {
   buttonText?: string;
   buttonLink?: string;
   dark?: boolean;
+  objectives?: string[]; // <-- Nueva propiedad opcional para el listado
 }
 
 export const ProductSection = ({
@@ -27,15 +28,14 @@ export const ProductSection = ({
   buttonText = 'Explorar',
   buttonLink = '#',
   dark = false,
+  objectives, // <-- La extraemos de las props
 }: ProductSectionProps) => {
-  // 1. Hook para detectar el scroll de esta sección específica
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
 
-  // 2. Transformación Parallax: la imagen se moverá un 20% en el eje Y
   const yImage = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   return (
@@ -44,10 +44,9 @@ export const ProductSection = ({
       id={id} 
       className={cn(
         "min-h-screen flex items-center py-20 px-6 md:px-24 overflow-hidden relative",
-        dark ? "bg-[#1a432e] text-white" : "bg-[#f9f6f1] text-[#333]" // Ajuste de fondo claro
+        dark ? "bg-[#1a432e] text-white" : "bg-[#f9f6f1] text-[#333]" 
       )}
     >
-      {/* Trama geométrica de fondo opcional para las secciones oscuras */}
       {dark && (
         <motion.div 
           className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
@@ -97,15 +96,42 @@ export const ProductSection = ({
               )}
               delay={0.4}
             />
+
+            {/* RENDERIZADO DEL LISTADO DE OBJETIVOS */}
+            {objectives && objectives.length > 0 && (
+              <ul className="space-y-4 mt-6">
+                {objectives.map((obj, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.6 + (index * 0.1) }} // Cascading delay
+                    className="flex items-start gap-3"
+                  >
+                    <div className={cn(
+                      "mt-2 w-2 h-2 shrink-0 border border-current rounded-sm", // Viñeta geométrica
+                      dark ? "bg-white/20 text-white" : "bg-[#1a432e]/20 text-[#1a432e]"
+                    )} />
+                    <span className={cn(
+                      "text-base md:text-lg font-medium leading-relaxed",
+                      dark ? "text-white/90" : "text-[#444]"
+                    )}>
+                      {obj}
+                    </span>
+                  </motion.li>
+                ))}
+              </ul>
+            )}
             
             <a 
               href={buttonLink}
               className={cn(
-                "px-8 py-4 font-semibold inline-flex items-center gap-2 transition-all group w-fit",
+                "px-8 py-4 font-semibold inline-flex items-center gap-2 transition-all group w-fit mt-4",
                 dark 
                   ? "bg-white text-[#1a432e] hover:bg-white/90" 
                   : "bg-[#1a432e] text-white hover:bg-[#2e7d32]",
-                "rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,0.15)] hover:shadow-none hover:translate-x-1 hover:translate-y-1" // Estilo geométrico
+                "rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,0.15)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
               )}
             >
               {buttonText}
@@ -113,7 +139,7 @@ export const ProductSection = ({
             </a>
           </motion.div>
 
-          {/* IMAGE CON PARALLAX */}
+          {/* IMAGE */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -121,13 +147,11 @@ export const ProductSection = ({
             transition={{ duration: 0.8 }}
             className="flex-1 w-full"
           >
-            {/* El contenedor recorta (overflow-hidden), la imagen interior se mueve */}
             <div className="relative aspect-[4/3] rounded-none overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] border border-black/5">
               <motion.div 
                 style={{ y: yImage }} 
                 className="absolute inset-0 w-full h-full"
               >
-                {/* scale-125 permite que la imagen se mueva sin mostrar bordes vacíos */}
                 <ImageWithFallback
                   src={image}
                   alt={title}
