@@ -10,8 +10,8 @@ import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 
 // 1. IMPORTA TUS IMÁGENES AQUÍ:
-import imagenAcercaDe from '../../imports/acerca-de.png'; 
-import imagenImportancia from '../../imports/tu-imagen-importancia.jpeg'; 
+import imagenAcercaDe from './imports/acerca-de.png'; 
+import imagenImportancia from './imports/tu-imagen-importancia.jpeg'; 
 
 function App() {
   const { scrollYProgress } = useScroll();

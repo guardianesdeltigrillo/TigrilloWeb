@@ -6,10 +6,10 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AnimatedText } from './AnimatedText';
 
 // 1. IMPORTA TUS IMÁGENES AQUÍ:
-import imgCedula from '../../imports/imagen-cedula.jpg'; // Reemplaza con tus archivos
-import imgTrivia from '../../imports/imagen-trivia.jpg';
-import imgBot from '../../imports/imagen-bot.jpg';
-import imgEntrevista from '../../imports/imagen-entrevista.jpg';
+import imgCedula from './imports/imagen-cedula.jpg'; // Reemplaza con tus archivos
+import imgTrivia from './imports/imagen-trivia.jpg';
+import imgBot from './imports/imagen-bot.jpg';
+import imgEntrevista from './imports/imagen-entrevista.jpg';
 
 interface Product {
   id: string;

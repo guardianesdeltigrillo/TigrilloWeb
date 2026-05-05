@@ -5,9 +5,9 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AnimatedText } from './AnimatedText';
 
 // 1. IMPORTA LOS LOGOS AQUÍ:
-import logoFundacion from '../../imports/logo-usb-vertical.png'; // Reemplaza con tus archivos reales
-import logoZoo from '../../imports/logo-zoo-santacruz.png';
-import logoUAndina from '../../imports/logo-andina.png';
+import logoFundacion from './imports/logo-usb-vertical.png'; // Reemplaza con tus archivos reales
+import logoZoo from './imports/logo-zoo-santacruz.png';
+import logoUAndina from './imports/logo-andina.png';
 
 interface Partner {
   id: string;
