@@ -51,7 +51,7 @@ const products: Product[] = [
     image: imgBot, // 2. USA LA VARIABLE AQUÍ
     action: 'Abrir WhatsApp',
     color: 'from-teal-500/80 to-cyan-900/90',
-    link: 'https://wa.me/tunumerodetelefono',
+    link: 'https://wa.link/6yuf3z',
   },
   {
     id: 'entrevista',
