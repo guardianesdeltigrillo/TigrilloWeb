@@ -15,7 +15,7 @@ interface ProductSectionProps {
   buttonText?: string;
   buttonLink?: string;
   dark?: boolean;
-  objectives?: string[]; // <-- Nueva propiedad opcional para el listado
+  objectives?: string[]; 
 }
 
 export const ProductSection = ({
@@ -25,10 +25,10 @@ export const ProductSection = ({
   description,
   image,
   reverse = false,
-  buttonText = 'Explorar',
-  buttonLink = '#',
+  buttonText, 
+  buttonLink, 
   dark = false,
-  objectives, // <-- La extraemos de las props
+  objectives,
 }: ProductSectionProps) => {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -97,7 +97,7 @@ export const ProductSection = ({
               delay={0.4}
             />
 
-            {/* RENDERIZADO DEL LISTADO DE OBJETIVOS */}
+            {/* Listado de Objetivos */}
             {objectives && objectives.length > 0 && (
               <ul className="space-y-4 mt-6">
                 {objectives.map((obj, index) => (
@@ -106,11 +106,11 @@ export const ProductSection = ({
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.6 + (index * 0.1) }} // Cascading delay
+                    transition={{ duration: 0.5, delay: 0.6 + (index * 0.1) }}
                     className="flex items-start gap-3"
                   >
                     <div className={cn(
-                      "mt-2 w-2 h-2 shrink-0 border border-current rounded-sm", // Viñeta geométrica
+                      "mt-2 w-2 h-2 shrink-0 border border-current rounded-sm",
                       dark ? "bg-white/20 text-white" : "bg-[#1a432e]/20 text-[#1a432e]"
                     )} />
                     <span className={cn(
@@ -124,22 +124,25 @@ export const ProductSection = ({
               </ul>
             )}
             
-            <a 
-              href={buttonLink}
-              className={cn(
-                "px-8 py-4 font-semibold inline-flex items-center gap-2 transition-all group w-fit mt-4",
-                dark 
-                  ? "bg-white text-[#1a432e] hover:bg-white/90" 
-                  : "bg-[#1a432e] text-white hover:bg-[#2e7d32]",
-                "rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,0.15)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
-              )}
-            >
-              {buttonText}
-              <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </a>
+            {/* Botón Condicional */}
+            {(buttonText && buttonLink) && (
+              <a 
+                href={buttonLink}
+                className={cn(
+                  "px-8 py-4 font-semibold inline-flex items-center gap-2 transition-all group w-fit mt-4",
+                  dark 
+                    ? "bg-white text-[#1a432e] hover:bg-white/90" 
+                    : "bg-[#1a432e] text-white hover:bg-[#2e7d32]",
+                  "rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,0.15)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
+                )}
+              >
+                {buttonText}
+                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+            )}
           </motion.div>
 
-          {/* IMAGE */}
+          {/* Imagen Parallax */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}

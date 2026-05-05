@@ -32,12 +32,10 @@ export const Footer = () => {
               Únete a nuestra comunidad en redes sociales y ayuda a visibilizar la protección del ecosistema andino.
             </p>
             
-            {/* Contenedor de iconos */}
             <div className="flex items-center gap-4">
               
-              {/* Botón Instagram */}
               <a 
-                href="https://www.instagram.com/guardianesdeltigrillo/" 
+                href="https://instagram.com/tu-usuario" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 border border-white/30 flex items-center justify-center bg-transparent hover:bg-white hover:text-[#1a432e] transition-all duration-300 rounded-none shadow-[4px_4px_0px_0px_rgba(255,255,255,0.15)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
@@ -46,9 +44,8 @@ export const Footer = () => {
                 <Instagram size={22} />
               </a>
 
-              {/* Botón YouTube */}
               <a 
-                href="https://www.youtube.com/channel/UCIlUX880JsQe2MERLP6246A" 
+                href="https://youtube.com/@tu-canal" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 border border-white/30 flex items-center justify-center bg-transparent hover:bg-white hover:text-[#1a432e] transition-all duration-300 rounded-none shadow-[4px_4px_0px_0px_rgba(255,255,255,0.15)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
@@ -57,7 +54,6 @@ export const Footer = () => {
                 <Youtube size={22} />
               </a>
 
-              {/* Botón TikTok (Usando SVG personalizado) */}
               <a 
                 href="https://tiktok.com/@tu-usuario" 
                 target="_blank" 
@@ -78,7 +74,6 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Barra de Copyright */}
         <div className="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-white/50 text-sm font-medium">
           <p>© {new Date().getFullYear()} Zooteka. Todos los derechos reservados.</p>
           <div className="flex gap-6">

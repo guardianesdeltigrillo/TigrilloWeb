@@ -9,9 +9,7 @@ import { Partners } from './components/Partners';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 
-// 1. IMPORTA TUS IMÁGENES AQUÍ:
-// IMPORTACIONES PARA App.tsx
-// EN App.tsx
+// IMPORTA TUS IMÁGENES AQUÍ (Saliendo un nivel con ../)
 import imagenAcercaDe from '../imports/acerca-de.png';
 import imagenImportancia from '../imports/tu-imagen-importancia.jpeg';
 
@@ -26,6 +24,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#f9f6f1] overflow-x-hidden scroll-smooth relative cursor-none">
+      
       <CustomCursor />
 
       <motion.div
@@ -36,10 +35,13 @@ function App() {
       <Navbar />
       
       <main>
+        {/* 1. Hero */}
         <Hero />
+        
+        {/* 2. Stats */}
         <Stats />
         
-    {/* Acerca de */}
+        {/* Acerca de */}
         <ProductSection
           id="acerca-de"
           subtitle="Proyecto Ingeniería Multimedia"
@@ -52,34 +54,31 @@ function App() {
             "Implementar los productos realizados a cada publico objetivo.",
             "Evaluar la eficacia de la estrategia con respecto a la concientización del tigrillo lanudo y sus problematicas."
           ]}
-          buttonText="Conocer Más"
-          buttonLink="#inicio"
         />
 
-        {/* Importancia */}
+        {/* 4. Importancia (SIN botón) */}
         <ProductSection
           id="importancia"
           subtitle="Impacto Ambiental"
           title="¿Por qué es vital su protección?"
           description="El tigrillo lanudo actúa como un guardián silencioso del equilibrio natural. Proteger su hábitat beneficia a innumerables especies y comunidades, asegurando la vitalidad y la preservación de los bosques y de regiones montañosas como el Altiplano que dependen de este frágil ecosistema."
-          image={imagenImportancia} // 2. USA LA VARIABLE AQUÍ (sin comillas)
+          image={imagenImportancia}
           reverse
           dark
-          buttonText="Súmate a la Causa"
-          buttonLink="#aliados" 
         />
 
-        {/* Jubi 3D (No usa imagen estática, usa el canvas 3D) */}
+        {/* 5. Jubi 3D (SIN botón) */}
         <ProductSection3D
           id="jubi-3d"
           subtitle="Exploración Anatómica"
           title="Conoce a Jubi el tigrillo"
           description="Jubi es nuestro amigo el tigrillo, es un poco timido, pero solo es un fotógrafo que busca tranquilidad, tiene hábitos nocturnos, aunque es activo a veces de día, le encanta trepar árboles y escuchar musica en soledad."
-          buttonText="Interactuar con el Modelo"
-          buttonLink="#jubi-3d" 
         />
 
+        {/* 6. Ecosistema Digital */}
         <ProductGrid />
+    
+        {/* 7. Aliados */}
         <Partners />
       </main>
 
