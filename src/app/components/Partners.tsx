@@ -4,10 +4,9 @@ import { ExternalLink } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AnimatedText } from './AnimatedText';
 
-// 1. IMPORTA LOS LOGOS AQUÍ:
-import logoFundacion from 'src/imports/logo-usb-vertical.png'; // Reemplaza con tus archivos reales
-import logoZoo from 'src/imports/logo-zoo-santacruz.png';
-import logoUAndina from 'src/imports/logo-andina.png';
+// IMPORTACIONES PARA Partners.tsx
+import logoUsb from '../imports/logo-usb-vertical.png';
+import logoZoo from '../imports/logo-zoo-santacruz.png';
 
 interface Partner {
   id: string;
@@ -21,7 +20,7 @@ const partnersData: Partner[] = [
   {
     id: '1',
     name: 'Universidad De San Buenaventura',
-    logo: logoFundacion, // 2. USA LA VARIABLE AQUÍ
+    logo: logoUsb, // 2. USA LA VARIABLE AQUÍ
     website: 'https://www.usbbog.edu.co/',
     description: 'Ser más que tener'
   },
@@ -31,13 +30,6 @@ const partnersData: Partner[] = [
     logo: logoZoo, // 2. USA LA VARIABLE AQUÍ
     website: 'https://zoosantacruz.org/',
     description: 'Educación para la conservación'
-  },
-  {
-    id: '3',
-    name: 'Guardianes Del Tigrillo',
-    logo: logoUAndina, // 2. USA LA VARIABLE AQUÍ
-    website: 'https://tigrillo-web-zeta.vercel.app/#inicio',
-    description: 'Investigación en protección del tirgillo'
   },
 ];
 

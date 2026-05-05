@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
-import tigrilloImage from '../../imports/image-1.png';
+import tigrilloImage from '../imports/image-1.png';
 import { AnimatedText } from './AnimatedText';
 
 export const Hero = () => {

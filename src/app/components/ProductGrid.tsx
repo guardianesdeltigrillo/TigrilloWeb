@@ -5,11 +5,11 @@ import { cn } from '../../lib/utils';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AnimatedText } from './AnimatedText';
 
-// 1. IMPORTA TUS IMÁGENES AQUÍ:
-import imgCedula from 'src/imports/imagen-cedula.jpg'; // Reemplaza con tus archivos
-import imgTrivia from 'src/imports/imagen-trivia.jpg';
-import imgBot from 'src/imports/imagen-bot.jpg';
-import imgEntrevista from 'src/imports/imagen-entrevista.jpg';
+// IMPORTACIONES PARA ProductGrid.tsx
+import imgCedula from '../imports/imagen-cedula.jpg'; 
+import imgTrivia from '../imports/imagen-trivia.jpg';
+import imgBot from '../imports/imagen-bot.jpg';
+import imgEntrevista from '../imports/imagen-entrevista.jpg';
 
 interface Product {
   id: string;
