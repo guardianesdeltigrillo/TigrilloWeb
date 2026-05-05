@@ -58,8 +58,7 @@ const partnersData: Partner[] = [
 
 export const Partners = () => {
   return (
-    <section className="min-h-screen flex items-center py-20 px-6 md:px-24 bg-gradient-to-br from-[#f9f6f1] to-[#e8e3d8]">
-      <div className="max-w-7xl mx-auto w-full">
+    <section id="aliados" className="min-h-screen flex items-center py-20 px-6 md:px-24 bg-gradient-to-br from-[#f9f6f1] to-[#e8e3d8]">      <div className="max-w-7xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -170,6 +169,7 @@ const PartnerCard: FC<PartnerCardProps> = ({ partner, index }) => {
 
   if (partner.website) {
     return (
+
       <a
         href={partner.website}
         target="_blank"

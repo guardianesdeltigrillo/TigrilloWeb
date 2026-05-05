@@ -7,7 +7,7 @@ import { ProductSection3D } from './components/ProductSection3D';
 import { ProductGrid } from './components/ProductGrid';
 import { Partners } from './components/Partners';
 import { Footer } from './components/Footer';
-import { CustomCursor } from './components/CustomCursor'; // 1. Importamos el cursor
+import { CustomCursor } from './components/CustomCursor';
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -19,10 +19,8 @@ function App() {
   });
 
   return (
-    // 2. AÑADIMOS 'cursor-none' a las clases del contenedor principal
     <div className="min-h-screen bg-[#f9f6f1] overflow-x-hidden scroll-smooth relative cursor-none">
       
-      {/* 3. Colocamos el componente del cursor aquí arriba */}
       <CustomCursor />
 
       <motion.div
@@ -33,53 +31,50 @@ function App() {
       <Navbar />
       
       <main>
+        {/* 1. Hero */}
         <Hero />
-        <Stats />
-        <ProductGrid />
         
+        {/* 2. Stats (Estadísticas breves) */}
+        <Stats />
+        
+        {/* 3. Acerca de */}
         <ProductSection
-          id="triviazoo"
-          subtitle="Gamificación Educativa"
-          title="Triviazoo: El Desafío del Guardián"
-          description="Conviértete en un experto en biodiversidad mientras te diviertes. Triviazoo es una experiencia interactiva diseñada para poner a prueba tus conocimientos sobre el ecosistema andino y las estrategias de conservación necesarias para proteger al tigrillo lanudo."
-          image="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b"
-          buttonText="Jugar Ahora"
-          buttonLink="https://guardianes-del-tigrillo.itch.io/triviazoo"
+          id="acerca-de"
+          subtitle="Museo Digital"
+          title="Acerca de Zooteka"
+          description="Zooteka es una enciclopedia multimedia interactiva diseñada para la divulgación y protección del Leopardus tigrinus. Nuestro objetivo es crear un espacio puramente educativo y de exploración visual que conecte a las personas con la riqueza natural de nuestros ecosistemas."
+          image="https://images.unsplash.com/photo-1456926631375-92c8ce872def?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+          buttonText="Conocer Más"
+          buttonLink="#inicio"
         />
 
+        {/* 4. Importancia */}
+        <ProductSection
+          id="importancia"
+          subtitle="Impacto Ambiental"
+          title="¿Por qué es vital su protección?"
+          description="El tigrillo lanudo actúa como un guardián silencioso del equilibrio natural. Proteger su hábitat beneficia a innumerables especies y comunidades, asegurando la vitalidad y la preservación de los bosques y de regiones montañosas como el Altiplano que dependen de este frágil ecosistema."
+          image="https://images.unsplash.com/photo-1511497584788-876760111969?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+          reverse
+          dark
+          buttonText="Súmate a la Causa"
+          buttonLink="#aliados" 
+        />
+
+        {/* 5. Jubi 3D */}
         <ProductSection3D
-          id="cedula-ar"
-          subtitle="Realidad Aumentada Inmersiva"
-          title="Cédula AR: Identidad Digital"
-          description="Explora la anatomía y los secretos del tigrillo desde una perspectiva única. Al escanear nuestras cédulas de identificación, desbloqueas una experiencia de realidad aumentada con modelos 3D detallados y datos científicos que cobran vida frente a tus ojos."
-          reverse
-          dark
-          buttonText="Explorar Cédulas"
-          buttonLink="#cedula-ar" 
+          id="jubi-3d"
+          subtitle="Exploración Anatómica"
+          title="Conoce a Jubi en 3D"
+          description="Interactúa con Jubi, nuestro modelo tridimensional de alta fidelidad. Observa de cerca los detalles de su pelaje moteado y su fisionomía, características evolutivas que le permiten ser un cazador sigiloso en los densos bosques nubosos."
+          buttonText="Interactuar con el Modelo"
+          buttonLink="#jubi-3d" 
         />
 
-        <ProductSection
-          id="entrevista"
-          subtitle="Ciencia y Conservación"
-          title="Mitazoo: Diálogos de Campo"
-          description="Escucha las historias de quienes están en la primera línea de la protección silvestre. Acompañamos a biólogos y expertos en una serie de entrevistas profundas donde descubrimos los retos, las victorias y la importancia vital de preservar a los felinos de Sudamérica."
-          image="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d"
-          buttonText="Ver Entrevista"
-          buttonLink="#entrevista" 
-        />
-
-        <ProductSection
-          id="bot-jubi"
-          subtitle="Inteligencia Artificial con Propósito"
-          title="Bot Jubi: Tu Guía en el Bosque"
-          description="Conoce a Jubi, nuestro asistente inteligente con la esencia del tigrillo. A través de una conversación cercana y dinámica, Jubi resuelve tus dudas sobre la especie, comparte hallazgos científicos y te enseña cómo tus acciones pueden impactar positivamente en el bosque nuboso."
-          image="https://images.unsplash.com/photo-1614680376593-902f74cf0d41"
-          reverse
-          dark
-          buttonText="Chatear con Jubi"
-          buttonLink="https://wa.me/tu-numero" 
-        />
+        {/* 6. Product Grid (Ecosistema de links externos) */}
+        <ProductGrid />
     
+        {/* 7. Aliados */}
         <Partners />
       </main>
 

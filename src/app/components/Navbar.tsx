@@ -2,11 +2,12 @@ import { useState, useEffect, MouseEvent, ElementType } from "react";
 import { motion } from "motion/react";
 import {
   Home,
-  Gamepad2,
-  Brain,
-  Mic,
   BookOpen,
-  BarChart3,
+  Globe,
+  Box,
+  LayoutGrid,
+  Users,
+  Brain,
   Menu,
   X,
 } from "lucide-react";
@@ -20,10 +21,11 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Inicio", href: "#inicio", icon: Home },
-  { label: "Triviazoo", href: "#triviazoo", icon: Gamepad2 },
-  { label: "Cedula AR", href: "#cedula-ar", icon: Brain },
-  { label: "Entrevista", href: "#entrevista", icon: Mic },
-  { label: "Bot Jubi", href: "#bot-jubi", icon: BarChart3 },
+  { label: "Acerca de", href: "#acerca-de", icon: BookOpen },
+  { label: "Importancia", href: "#importancia", icon: Globe },
+  { label: "Jubi 3D", href: "#jubi-3d", icon: Box },
+  { label: "Ecosistema", href: "#product-grid", icon: LayoutGrid },
+  { label: "Aliados", href: "#aliados", icon: Users },
 ];
 
 export const Navbar = () => {
@@ -69,7 +71,7 @@ export const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {navItems.map((item) => (
             <a
               key={item.href}

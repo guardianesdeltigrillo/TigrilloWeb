@@ -1,4 +1,3 @@
-
 export const Footer = () => {
   return (
     <footer className="bg-[#1a432e] text-white py-20 px-6 border-t border-white/10">
@@ -12,12 +11,12 @@ export const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-xl font-serif mb-6">Nuestros Productos</h3>
+            <h3 className="text-xl font-serif mb-6">Navegación</h3>
             <ul className="space-y-4 text-white/70">
-              <li><a href="#triviazoo" className="hover:text-white transition-colors">Triviazoo</a></li>
-              <li><a href="#entrevista" className="hover:text-white transition-colors">Entrevista con expertos</a></li>
-              <li><a href="#bot-jubi" className="hover:text-white transition-colors">Bot Jubi El Tigrillo</a></li>
-              <li><a href="#cedula-ar" className="hover:text-white transition-colors">Cedula AR</a></li>
+              <li><a href="#acerca-de" className="hover:text-white transition-colors">Acerca de Zooteka</a></li>
+              <li><a href="#importancia" className="hover:text-white transition-colors">Impacto Ambiental</a></li>
+              <li><a href="#jubi-3d" className="hover:text-white transition-colors">Jubi en 3D</a></li>
+              <li><a href="#product-grid" className="hover:text-white transition-colors">Ecosistema Digital</a></li>
             </ul>
           </div>
 

@@ -74,8 +74,7 @@ export const ProductGrid = () => {
   const yCardImage = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section ref={ref} className="py-24 bg-[#0d2419] px-6 relative overflow-hidden">
-      
+    <section id="product-grid" ref={ref} className="py-24 bg-[#0d2419] px-6 relative overflow-hidden">      
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div 
           style={{ y: yShape1, rotate: 15 }} 
