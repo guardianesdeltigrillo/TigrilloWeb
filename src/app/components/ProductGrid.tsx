@@ -6,10 +6,10 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AnimatedText } from './AnimatedText';
 
 // IMPORTACIONES PARA ProductGrid.tsx
-import imgCedula from '../imports/imagen-cedula.jpg'; 
-import imgTrivia from '../imports/imagen-trivia.jpg';
-import imgBot from '../imports/imagen-bot.jpg';
-import imgEntrevista from '../imports/imagen-entrevista.jpg';
+import imgCedula from '../../imports/imagen-cedula.jpg'; 
+import imgTrivia from '../../imports/imagen-trivia.jpg';
+import imgBot from '../../imports/imagen-bot.jpg';
+import imgEntrevista from '../../imports/imagen-entrevista.jpg';
 
 interface Product {
   id: string;

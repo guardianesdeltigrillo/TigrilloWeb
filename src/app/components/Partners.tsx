@@ -5,8 +5,8 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AnimatedText } from './AnimatedText';
 
 // IMPORTACIONES PARA Partners.tsx
-import logoUsb from '../imports/logo-usb-vertical.png';
-import logoZoo from '../imports/logo-zoo-santacruz.png';
+import logoUsb from '../../imports/logo-usb-vertical.png';
+import logoZoo from '../../imports/logo-zoo-santacruz.png';
 
 interface Partner {
   id: string;

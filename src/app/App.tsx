@@ -11,8 +11,9 @@ import { CustomCursor } from './components/CustomCursor';
 
 // 1. IMPORTA TUS IMÁGENES AQUÍ:
 // IMPORTACIONES PARA App.tsx
-import imagenAcercaDe from './imports/acerca-de.png';
-import imagenImportancia from './imports/tu-imagen-importancia.jpeg'; // Fíjate que termina en .jpeg'; 
+// EN App.tsx
+import imagenAcercaDe from '../imports/acerca-de.png';
+import imagenImportancia from '../imports/tu-imagen-importancia.jpeg';
 
 function App() {
   const { scrollYProgress } = useScroll();
