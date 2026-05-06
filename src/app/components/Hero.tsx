@@ -59,12 +59,12 @@ export const Hero = () => {
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <span className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-sm text-white text-sm font-bold uppercase tracking-widest mb-6 shadow-lg">
-            Leopardus tigrinus
+            Tigrillo Lanudo(Leopardus tigrinus)
           </span>
         </motion.div>
 
         <AnimatedText 
-          text="Tigrillo Lanudo"
+          text="Zooteka"
           el="h1"
           className="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight drop-shadow-2xl"
           delay={0.2}

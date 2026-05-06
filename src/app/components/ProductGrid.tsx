@@ -29,7 +29,7 @@ const products: Product[] = [
     description: 'Lleva la conservación a tu realidad. Escanea la postal del tigrillo y desbloquea un modelo 3D interactivo para explorar sus rasgos y secretos en un entorno inmersivo.',
     icon: Scan,
     image: imgCedula, // Mantenemos la variable de la imagen igual para no romper la importación
-    action: 'Abrir Postales',
+    action: 'Abrir Escaner AR',
     color: 'from-emerald-500/80 to-green-900/90',
     link: 'https://tu-dominio.com/postal-ar', 
   },

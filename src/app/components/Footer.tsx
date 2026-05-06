@@ -8,9 +8,9 @@ export const Footer = () => {
           
           {/* Columna 1 */}
           <div>
-            <h3 className="text-xl font-serif mb-6 uppercase tracking-widest">Sobre el Tigrillo</h3>
+            <h3 className="text-xl font-serif mb-6 uppercase tracking-widest">Sobre la Zooteka</h3>
             <p className="text-white/70 leading-relaxed font-medium">
-              Un centro digital integral dedicado a la conservación y estudio de la oncilla (Leopardus tigrinus) para las generaciones futuras.
+              Un centro digital integral dedicado a la conservación y estudio del tigrillo lanudo (Leopardus tigrinus) para las generaciones futuras.
             </p>
           </div>
           
