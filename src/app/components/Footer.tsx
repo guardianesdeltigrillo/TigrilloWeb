@@ -55,7 +55,7 @@ export const Footer = () => {
               </a>
 
               <a 
-                href="https://tiktok.com/@tu-usuario" 
+                href="https://www.tiktok.com/@guardianes.del.ti?_r=1&_t=ZS-968fgryhXeO" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 border border-white/30 flex items-center justify-center bg-transparent hover:bg-white hover:text-[#1a432e] transition-all duration-300 rounded-none shadow-[4px_4px_0px_0px_rgba(255,255,255,0.15)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"

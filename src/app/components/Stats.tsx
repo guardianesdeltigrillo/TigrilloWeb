@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { AlertTriangle } from 'lucide-react'; // <-- Importamos el icono de alerta
 import { AnimatedText } from './AnimatedText';
 
 const stats = [
@@ -8,7 +9,7 @@ const stats = [
     label: 'Peso promedio del adulto',
   },
   {
-    value: 'VU',
+    value: 'VU', 
     unit: 'Vulnerable',
     label: 'Estado de conservación UICN',
   },
@@ -21,7 +22,7 @@ const stats = [
 
 export const Stats = () => {
   return (
-    // 1. Cambiamos el fondo a verde oscuro
+    // Fondo verde oscuro
     <section className="py-24 bg-[#1a432e] px-6">
       <div className="max-w-7xl mx-auto text-center">
         <motion.div
@@ -56,9 +57,16 @@ export const Stats = () => {
               transition={{ delay: 0.6 + (index * 0.2), duration: 0.5 }}
               className="flex flex-col items-center"
             >
-              {/* 2. Círculos con estilo cristal translucido */}
+              {/* Círculos con estilo cristal translucido */}
               <div className="w-32 h-32 rounded-full border border-white/20 bg-white/10 flex items-center justify-center mb-6 shadow-sm backdrop-blur-sm">
-                <span className="text-3xl font-bold text-white">{stat.value}</span>
+                
+                {/* CONDICIONAL: Si el valor es VU, mostramos el logo de alerta. Si no, mostramos el número normal */}
+                {stat.value === 'VU' ? (
+                  <AlertTriangle className="w-14 h-14 text-amber-400 drop-shadow-md" strokeWidth={1.5} />
+                ) : (
+                  <span className="text-3xl font-bold text-white">{stat.value}</span>
+                )}
+                
               </div>
               <h3 className="text-xl font-bold text-white mb-1">{stat.unit}</h3>
               <p className="text-white/60 text-sm">{stat.label}</p>
