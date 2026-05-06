@@ -35,7 +35,7 @@ export const Footer = () => {
             <div className="flex items-center gap-4">
               
               <a 
-                href="https://instagram.com/tu-usuario" 
+                href="https://www.instagram.com/guardianesdeltigrillo/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 border border-white/30 flex items-center justify-center bg-transparent hover:bg-white hover:text-[#1a432e] transition-all duration-300 rounded-none shadow-[4px_4px_0px_0px_rgba(255,255,255,0.15)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
@@ -45,7 +45,7 @@ export const Footer = () => {
               </a>
 
               <a 
-                href="https://youtube.com/@tu-canal" 
+                href="https://www.youtube.com/channel/UCIlUX880JsQe2MERLP6246A" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 border border-white/30 flex items-center justify-center bg-transparent hover:bg-white hover:text-[#1a432e] transition-all duration-300 rounded-none shadow-[4px_4px_0px_0px_rgba(255,255,255,0.15)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"

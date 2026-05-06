@@ -10,7 +10,7 @@ import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 
 // IMPORTA TUS IMÁGENES AQUÍ (Saliendo un nivel con ../)
-import imagenAcercaDe from '../imports/acerca-de.png';
+import imagenAcercaDe from '../imports/acerca-de.jpeg';
 import imagenImportancia from '../imports/tu-imagen-importancia.jpeg';
 
 function App() {
@@ -48,12 +48,6 @@ function App() {
           title="Acerca de Los Guardianes Del Tigrillo"
           description="Nuestro proyecto busca sensibilizar a las poblaciones sobre las amenazas que sufre el tigrillo lanudo cercanas al altiplano cundiboyacense por medio de una estrategia transmedia."
           image={imagenAcercaDe}
-          objectives={[
-            "Investigar la importancia y las problematicas que rodean al tigrillo lanudo.",
-            "Diseñar un personaje con su narrativa y caracterizacion acorde a las problematica que se busca impactar.",
-            "Implementar los productos realizados a cada publico objetivo.",
-            "Evaluar la eficacia de la estrategia con respecto a la concientización del tigrillo lanudo y sus problematicas."
-          ]}
         />
 
         {/* 4. Importancia (SIN botón) */}
