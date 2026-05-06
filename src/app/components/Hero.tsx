@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ChevronRight } from 'lucide-react';
 import tigrilloImage from '../../imports/image-1.png';
 import { AnimatedText } from './AnimatedText';
 
@@ -77,22 +76,6 @@ export const Hero = () => {
           className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed max-w-2xl font-light"
           delay={0.6} 
         />
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }} 
-          className="flex flex-wrap gap-4"
-        >
-          {/* Botones con bordes afilados para mantener el estilo geométrico */}
-          <button className="px-8 py-4 bg-[#2e7d32] text-white rounded-none font-semibold flex items-center gap-2 hover:bg-[#1a432e] transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
-            Explorar Conservación
-            <ChevronRight size={20} className="animate-pulse" />
-          </button>
-          <button className="px-8 py-4 bg-transparent border border-white text-white rounded-none font-bold flex items-center gap-2 hover:bg-white hover:text-black transition-colors duration-300">
-            Ver Galería
-          </button>
-        </motion.div>
       </motion.div>
 
       {/* Indicador de Scroll */}

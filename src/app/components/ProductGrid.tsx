@@ -24,21 +24,21 @@ interface Product {
 
 const products: Product[] = [
   {
-    id: 'cedula-ar',
-    title: 'CÉDULA AR',
-    description: 'Lleva la conservación a tu realidad. Escanea la cédula del tigrillo y desbloquea un modelo 3D interactivo para explorar sus rasgos y secretos en un entorno inmersivo.',
+    id: 'postal-ar',
+    title: 'POSTAL AR',
+    description: 'Lleva la conservación a tu realidad. Escanea la postal del tigrillo y desbloquea un modelo 3D interactivo para explorar sus rasgos y secretos en un entorno inmersivo.',
     icon: Scan,
-    image: imgCedula, // 2. USA LA VARIABLE AQUÍ
-    action: 'Abrir Cédulas',
+    image: imgCedula, // Mantenemos la variable de la imagen igual para no romper la importación
+    action: 'Abrir Postales',
     color: 'from-emerald-500/80 to-green-900/90',
-    link: 'https://tu-dominio.com/cedula-ar', 
+    link: 'https://tu-dominio.com/postal-ar', 
   },
   {
     id: 'triviazoo',
     title: 'TRIVIAZOO',
     description: '¿Cuánto sabes sobre el Guardián de los Andes? Pon a prueba tu destreza en un desafío de trivia diseñado para aprender divirtiéndote sobre la biodiversidad y la protección del tigrillo.',
     icon: Brain,
-    image: imgTrivia, // 2. USA LA VARIABLE AQUÍ
+    image: imgTrivia, 
     action: 'Jugar en itch.io',
     color: 'from-amber-500/80 to-orange-900/90',
     link: 'https://guardianes-del-tigrillo.itch.io/triviazoo',
@@ -48,7 +48,7 @@ const products: Product[] = [
     title: 'BOT JUBI',
     description: 'Conversa con el alma del bosque. Jubi, nuestro bot inteligente, te acompaña en una charla dinámica para resolver tus dudas y enseñarte todo sobre su hábitat en tiempo real.',
     icon: MessageCircle,
-    image: imgBot, // 2. USA LA VARIABLE AQUÍ
+    image: imgBot, 
     action: 'Abrir WhatsApp',
     color: 'from-teal-500/80 to-cyan-900/90',
     link: 'https://wa.link/6yuf3z',
@@ -58,13 +58,12 @@ const products: Product[] = [
     title: 'ENTREVISTA',
     description: 'Voces expertas por la vida silvestre. Sumérgete en una charla profunda con los especialistas que dedican su vida a la protección y cuidado del tigrillo en un encuentro exclusivo.',
     icon: Video,
-    image: imgEntrevista, // 2. USA LA VARIABLE AQUÍ
+    image: imgEntrevista, 
     action: 'Ver en YouTube',
     color: 'from-blue-500/80 to-indigo-900/90',
     link: 'https://www.youtube.com/',
   }
 ];
-
 
 export const ProductGrid = () => {
   const ref = useRef(null);
@@ -127,8 +126,8 @@ export const ProductGrid = () => {
             <motion.a
               href={product.link}
               key={product.id}
-              target="_blank"             // 2. AÑADIMOS ESTO para abrir en nueva pestaña
-              rel="noopener noreferrer"   // 3. AÑADIMOS ESTO por seguridad
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

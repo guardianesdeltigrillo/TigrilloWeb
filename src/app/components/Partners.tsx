@@ -20,23 +20,23 @@ const partnersData: Partner[] = [
   {
     id: '1',
     name: 'Universidad De San Buenaventura',
-    logo: logoUsb, // 2. USA LA VARIABLE AQUÍ
+    logo: logoUsb,
     website: 'https://www.usbbog.edu.co/',
     description: 'Ser más que tener'
   },
   {
     id: '2',
     name: 'Zoológico Santa Cruz',
-    logo: logoZoo, // 2. USA LA VARIABLE AQUÍ
+    logo: logoZoo,
     website: 'https://zoosantacruz.org/',
     description: 'Educación para la conservación'
   },
 ];
 
-
 export const Partners = () => {
   return (
-    <section id="aliados" className="min-h-screen flex items-center py-20 px-6 md:px-24 bg-gradient-to-br from-[#f9f6f1] to-[#e8e3d8]">      <div className="max-w-7xl mx-auto w-full">
+    <section id="aliados" className="min-h-screen flex items-center py-20 px-6 md:px-24 bg-gradient-to-br from-[#f9f6f1] to-[#e8e3d8]">      
+      <div className="max-w-7xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -62,9 +62,12 @@ export const Partners = () => {
           />
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
+        {/* Flexbox centrado en lugar de Grid */}
+        <div className="flex flex-wrap justify-center items-stretch gap-6 lg:gap-8">
           {partnersData.map((partner, index) => (
-            <PartnerCard key={partner.id} partner={partner} index={index} />
+            <div key={partner.id} className="w-[45%] md:w-[220px]">
+              <PartnerCard partner={partner} index={index} />
+            </div>
           ))}
         </div>
 
@@ -89,14 +92,16 @@ export const Partners = () => {
             delay={0.6}
           />
           
-          <motion.button 
+          {/* NUEVO BOTÓN MAILTO */}
+          <motion.a 
+            href="mailto:guardianesdeltigrillo@gmail.com?subject=Interés%20en%20alianza%20con%20Los%20Guardianes%20del%20Tigrillo"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1 }}
-            className="px-8 py-3 bg-[#2e7d32] text-white rounded-full hover:bg-[#1a432e] transition-colors font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200"
+            className="inline-block px-8 py-3 bg-[#2e7d32] text-white rounded-full hover:bg-[#1a432e] transition-colors font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200 cursor-pointer"
           >
             Convertirse en Aliado
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>
@@ -114,8 +119,8 @@ const PartnerCard: FC<PartnerCardProps> = ({ partner, index }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }} // Retrasado para que salga después de los textos
-      className="group relative bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-[#2e7d32]/20 overflow-hidden"
+      transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }} 
+      className="group relative h-full bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-[#2e7d32]/20 overflow-hidden"
     >
       {partner.website && (
         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
@@ -147,12 +152,11 @@ const PartnerCard: FC<PartnerCardProps> = ({ partner, index }) => {
 
   if (partner.website) {
     return (
-
       <a
         href={partner.website}
         target="_blank"
         rel="noopener noreferrer"
-        className="block focus:outline-none focus:ring-2 focus:ring-[#2e7d32] focus:ring-offset-2 rounded-xl"
+        className="block h-full focus:outline-none focus:ring-2 focus:ring-[#2e7d32] focus:ring-offset-2 rounded-xl"
       >
         {content}
       </a>
