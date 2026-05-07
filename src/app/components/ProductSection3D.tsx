@@ -5,6 +5,10 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { AnimatedText } from './AnimatedText';
 
+// 1. IMPORTAMOS EL MODELO 3D LOCAL AQUÍ
+// Asegúrate de poner el nombre exacto de tu archivo (respetando mayúsculas/minúsculas y la extensión .glb)
+import jubiModelPath from '../../imports/JubiTigrillo2.glb'; 
+
 interface ProductSection3DProps {
   id: string;
   title: string;
@@ -72,12 +76,12 @@ function Canvas3DScene() {
 
     container.addEventListener("mousemove", handleMouseMove);
 
-  const loader = new GLTFLoader();
+    const loader = new GLTFLoader();
 
+    // 2. USAMOS LA VARIABLE DEL MODELO AQUÍ EN VEZ DEL ENLACE DE INTERNET
     loader.load(
-      "https://threejs.org/examples/models/gltf/Horse.glb",
+      jubiModelPath,
       (gltf: any) => {
-        // 1. Creamos una variable local (m) que TypeScript sabe que NO es nula
         const m = gltf.scene;
         
         m.traverse((child: any) => {
@@ -95,10 +99,10 @@ function Canvas3DScene() {
         
         m.scale.setScalar(scale);
         m.position.sub(center.multiplyScalar(scale));
+        m.position.y += 1; // Aumenta o disminuye este número a tu gusto (ej: 0.5, 1.2, 2.0)
         
         scene.add(m);
         
-        // 2. Le pasamos el modelo ya configurado a la variable externa para que se anime
         model = m; 
         setLoading(false);
       },
