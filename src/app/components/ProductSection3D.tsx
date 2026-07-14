@@ -201,7 +201,6 @@ export const ProductSection3D = ({
               />
             </div>
 
-            {/* AUMENTO DE TEXTO AQUÍ: md:text-xl */}
             <AnimatedText 
               text={description}
               el="p"
@@ -221,9 +220,9 @@ export const ProductSection3D = ({
             transition={{ duration: 0.8 }}
             className="flex-1 w-full"
           >
-            {/* CONTENEDOR 3D ACTUALIZADO: rounded-2xl y shadow-2xl */}
+            {/* CONTENEDOR 3D ACTUALIZADO: shadow thematico */}
             <div className={cn(
-              "relative aspect-square w-full max-w-lg mx-auto rounded-2xl overflow-hidden shadow-2xl border border-black/5",
+              "relative aspect-square w-full max-w-lg mx-auto rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(26,67,46,0.7)] border border-black/5",
               dark ? "bg-white/5 border-white/10" : "bg-black/5"
             )}>
               <Canvas3DScene />
