@@ -87,11 +87,12 @@ export const ProductSection = ({
               />
             </div>
 
+            {/* AUMENTO DE TEXTO AQUÍ: md:text-xl */}
             <AnimatedText 
               text={description}
               el="p"
               className={cn(
-                "text-lg leading-relaxed",
+                "text-lg md:text-xl leading-relaxed",
                 dark ? "text-white/80" : "text-[#555]"
               )}
               delay={0.4}
@@ -150,7 +151,8 @@ export const ProductSection = ({
             transition={{ duration: 0.8 }}
             className="flex-1 w-full"
           >
-            <div className="relative aspect-[4/3] rounded-none overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] border border-black/5">
+            {/* CONTENEDOR DE IMAGEN ACTUALIZADO: rounded-2xl y shadow-2xl */}
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-black/5">
               <motion.div 
                 style={{ y: yImage }} 
                 className="absolute inset-0 w-full h-full"

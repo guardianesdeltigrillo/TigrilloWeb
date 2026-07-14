@@ -6,7 +6,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { AnimatedText } from './AnimatedText';
 
 // 1. IMPORTAMOS EL MODELO 3D LOCAL AQUÍ
-// Asegúrate de poner el nombre exacto de tu archivo (respetando mayúsculas/minúsculas y la extensión .glb)
 import jubiModelPath from '../../imports/JubiTigrillo2.glb'; 
 
 interface ProductSection3DProps {
@@ -99,7 +98,7 @@ function Canvas3DScene() {
         
         m.scale.setScalar(scale);
         m.position.sub(center.multiplyScalar(scale));
-        m.position.y += 1; // Aumenta o disminuye este número a tu gusto (ej: 0.5, 1.2, 2.0)
+        m.position.y += 1; 
         
         scene.add(m);
         
@@ -202,11 +201,12 @@ export const ProductSection3D = ({
               />
             </div>
 
+            {/* AUMENTO DE TEXTO AQUÍ: md:text-xl */}
             <AnimatedText 
               text={description}
               el="p"
               className={cn(
-                "text-lg leading-relaxed",
+                "text-lg md:text-xl leading-relaxed",
                 dark ? "text-white/80" : "text-[#555]"
               )}
               delay={0.4}
@@ -221,14 +221,15 @@ export const ProductSection3D = ({
             transition={{ duration: 0.8 }}
             className="flex-1 w-full"
           >
+            {/* CONTENEDOR 3D ACTUALIZADO: rounded-2xl y shadow-2xl */}
             <div className={cn(
-              "relative aspect-square w-full max-w-lg mx-auto rounded-none overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] border border-black/5",
+              "relative aspect-square w-full max-w-lg mx-auto rounded-2xl overflow-hidden shadow-2xl border border-black/5",
               dark ? "bg-white/5 border-white/10" : "bg-black/5"
             )}>
               <Canvas3DScene />
               
               {/* Etiqueta geométrica flotante */}
-              <div className="absolute bottom-4 left-4 bg-[#1a432e] text-white px-4 py-2 text-xs font-bold uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+              <div className="absolute bottom-4 left-4 bg-[#1a432e] text-white px-4 py-2 text-xs font-bold uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] rounded">
                 Mueve el ratón para interactuar
               </div>
             </div>

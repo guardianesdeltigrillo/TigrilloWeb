@@ -9,7 +9,7 @@ import { AnimatedText } from './AnimatedText';
 import imgCedula from '../../imports/imagen-cedula.jpg'; 
 import imgTrivia from '../../imports/imagen-trivia.jpg';
 import imgBot from '../../imports/imagen-bot.jpg';
-import imgEntrevista from '../../imports/imagen-entrevista.jpg';
+import imgEntrevista from '../../imports/YTIMG.png';
 
 interface Product {
   id: string;
