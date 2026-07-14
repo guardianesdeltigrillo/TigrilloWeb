@@ -29,12 +29,12 @@ function Canvas3DScene() {
     scene.background = new THREE.Color(0xf0f4f0);
 
     const camera = new THREE.PerspectiveCamera(
-      50,
+      10,
       container.clientWidth / container.clientHeight,
-      0.1,
+      0.5,
       1000
     );
-    camera.position.set(0, 2, 8);
+    camera.position.set(0, 2.2, 8);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
