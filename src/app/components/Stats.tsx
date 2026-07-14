@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { AlertTriangle } from 'lucide-react'; // <-- Importamos el icono de alerta
+import { AlertTriangle, Scale, Mountain } from 'lucide-react';
 import { AnimatedText } from './AnimatedText';
 
 const stats = [
@@ -7,22 +7,27 @@ const stats = [
     value: '2-3',
     unit: 'Kilogramos',
     label: 'Peso promedio del adulto',
+    Icon: Scale,
+    iconColor: 'text-white',
   },
   {
     value: 'VU', 
     unit: 'Vulnerable',
     label: 'Estado de conservación UICN',
+    Icon: AlertTriangle,
+    iconColor: 'text-red-500', // Set specifically to red
   },
   {
     value: '1500+',
     unit: 'Metros',
     label: 'Elevación típica del hábitat',
+    Icon: Mountain,
+    iconColor: 'text-white',
   },
 ];
 
 export const Stats = () => {
   return (
-    // Fondo verde oscuro
     <section className="py-24 bg-[#1a432e] px-6">
       <div className="max-w-7xl mx-auto text-center">
         <motion.div
@@ -31,7 +36,6 @@ export const Stats = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          {/* Textos invertidos a blanco */}
           <AnimatedText 
             text="El Tigrillo Lanudo"
             el="h2"
@@ -57,19 +61,21 @@ export const Stats = () => {
               transition={{ delay: 0.6 + (index * 0.2), duration: 0.5 }}
               className="flex flex-col items-center"
             >
-              {/* Círculos con estilo cristal translucido */}
+              {/* Círculo con el Icono */}
               <div className="w-32 h-32 rounded-full border border-white/20 bg-white/10 flex items-center justify-center mb-6 shadow-sm backdrop-blur-sm">
-                
-                {/* CONDICIONAL: Si el valor es VU, mostramos el logo de alerta. Si no, mostramos el número normal */}
-                {stat.value === 'VU' ? (
-                  <AlertTriangle className="w-14 h-14 text-amber-400 drop-shadow-md" strokeWidth={1.5} />
-                ) : (
-                  <span className="text-3xl font-bold text-white">{stat.value}</span>
-                )}
-                
+                <stat.Icon 
+                  className={`w-14 h-14 drop-shadow-md ${stat.iconColor}`} 
+                  strokeWidth={1.5} 
+                />
               </div>
-              <h3 className="text-xl font-bold text-white mb-1">{stat.unit}</h3>
-              <p className="text-white/60 text-sm">{stat.label}</p>
+              
+              {/* Información y Texto desplazados debajo del icono */}
+              <h3 className="text-2xl font-bold text-white mb-1">
+                {stat.value === 'VU' ? stat.unit : `${stat.value} ${stat.unit}`}
+              </h3>
+              <p className="text-white/60 text-sm text-center max-w-[200px]">
+                {stat.label}
+              </p>
             </motion.div>
           ))}
         </div>
