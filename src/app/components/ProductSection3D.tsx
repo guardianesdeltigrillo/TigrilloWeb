@@ -5,7 +5,6 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { AnimatedText } from './AnimatedText';
 
-// 1. IMPORTAMOS EL MODELO 3D LOCAL AQUÍ
 import jubiModelPath from '../../imports/JubiTigrillo2.glb'; 
 
 interface ProductSection3DProps {
@@ -77,7 +76,6 @@ function Canvas3DScene() {
 
     const loader = new GLTFLoader();
 
-    // 2. USAMOS LA VARIABLE DEL MODELO AQUÍ EN VEZ DEL ENLACE DE INTERNET
     loader.load(
       jubiModelPath,
       (gltf: any) => {
@@ -220,9 +218,9 @@ export const ProductSection3D = ({
             transition={{ duration: 0.8 }}
             className="flex-1 w-full"
           >
-            {/* CONTENEDOR 3D ACTUALIZADO: shadow thematico */}
+            {/* CONTENEDOR 3D ACTUALIZADO: Sombra más oscura y opaca */}
             <div className={cn(
-              "relative aspect-square w-full max-w-lg mx-auto rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(26,67,46,0.7)] border border-black/5",
+              "relative aspect-square w-full max-w-lg mx-auto rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(10,25,15,0.95)] border border-black/5",
               dark ? "bg-white/5 border-white/10" : "bg-black/5"
             )}>
               <Canvas3DScene />
