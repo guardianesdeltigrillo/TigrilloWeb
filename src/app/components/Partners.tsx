@@ -6,7 +6,7 @@ import { AnimatedText } from './AnimatedText';
 
 // IMPORTACIONES PARA Partners.tsx
 import logoUsb from '../../imports/logo-usb-vertical.png';
-import logoZoo from '../../imports/logo-zoo-santacruz.png';
+//import logoZoo from '../../imports/logo-zoo-santacruz.png';
 
 interface Partner {
   id: string;
@@ -23,13 +23,6 @@ const partnersData: Partner[] = [
     logo: logoUsb,
     website: 'https://www.usbbog.edu.co/',
     description: 'Ser más que tener'
-  },
-  {
-    id: '2',
-    name: 'Zoológico Santa Cruz',
-    logo: logoZoo,
-    website: 'https://zoosantacruz.org/',
-    description: 'Educación para la conservación'
   },
 ];
 
