@@ -5,11 +5,12 @@ import { cn } from '../../lib/utils';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AnimatedText } from './AnimatedText';
 
-// IMPORTACIONES PARA ProductGrid.tsx
+// IMPORTACIONES
 import imgCedula from '../../imports/imagen-cedula.jpg'; 
 import imgTrivia from '../../imports/imagen-trivia.jpg';
 import imgBot from '../../imports/imagen-bot.jpg';
 import imgEntrevista from '../../imports/YTIMG.png';
+import fondo1 from '../../imports/fondo 1.png';
 
 interface Product {
   id: string;
@@ -28,7 +29,7 @@ const products: Product[] = [
     title: 'POSTAL AR',
     description: 'Lleva la conservación a tu realidad. Escanea la postal del tigrillo y desbloquea un modelo 3D interactivo para explorar sus rasgos y secretos en un entorno inmersivo.',
     icon: Scan,
-    image: imgCedula, // Mantenemos la variable de la imagen igual para no romper la importación
+    image: imgCedula, 
     action: 'Abrir Escaner AR',
     color: 'from-emerald-500/80 to-green-900/90',
     link: 'https://guardianesdeltigrillo.github.io/PostalesAR/', 
@@ -79,7 +80,17 @@ export const ProductGrid = () => {
   const yCardImage = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section id="product-grid" ref={ref} className="py-24 bg-[#0d2419] px-6 relative overflow-hidden">      
+    <section 
+      id="product-grid" 
+      ref={ref} 
+      className="py-24 bg-[#0d2419] px-6 relative overflow-hidden"
+      style={{ 
+        backgroundImage: `url('${fondo1}')`, 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >      
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div 
           style={{ y: yShape1, rotate: 15 }} 

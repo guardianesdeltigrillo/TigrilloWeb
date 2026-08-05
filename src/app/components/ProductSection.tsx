@@ -5,6 +5,9 @@ import { cn } from '../../lib/utils';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { AnimatedText } from './AnimatedText';
 
+// Importamos el fondo
+import fondo1 from '../../imports/fondo 1.png';
+
 interface ProductSectionProps {
   id: string;
   title: string;
@@ -46,17 +49,15 @@ export const ProductSection = ({
         "min-h-screen flex items-center py-20 px-6 md:px-24 overflow-hidden relative",
         dark ? "bg-[#1a432e] text-white" : "bg-[#f9f6f1] text-[#333]" 
       )}
+      // Aquí aplicamos la imagen como fondo si es la sección oscura
+      style={dark ? { 
+        backgroundImage: `url('${fondo1}')`, 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      } : undefined}
     >
-      {dark && (
-        <motion.div 
-          className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
-          style={{ 
-            backgroundImage: 'radial-gradient(#ffffff 2px, transparent 2px)',
-            backgroundSize: '24px 24px',
-            y: useTransform(scrollYProgress, [0, 1], ["0%", "-10%"])
-          }} 
-        />
-      )}
+      {/* Eliminé el div del radial-gradient anterior ya que ahora usamos fondo 1.png */}
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className={cn(

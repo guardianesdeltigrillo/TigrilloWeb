@@ -1,34 +1,43 @@
-import { useState, useEffect, MouseEvent, ElementType } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import { motion } from "motion/react";
-import {
-  Home,
-  BookOpen,
-  Globe,
-  Box,
-  LayoutGrid,
-  Users,
-  Brain,
-  Menu,
-  X,
-} from "lucide-react";
+// We keep Menu and X from lucide-react since they weren't in your SVG folder[cite: 1]
+import { Menu, X } from "lucide-react"; 
 import { cn } from "../../lib/utils";
 
+// ==========================================
+// SVG File Imports
+// Adjust the relative paths (../../) to match where Navbar.tsx is located 
+// relative to the 'imports' folder shown in your screenshot.
+// ==========================================
+import homeSvg from "../../imports/iconos/iconos/SVG/Home.svg";
+import acercaDeSvg from "../../imports/iconos/iconos/SVG/acerca de.svg";
+import importanciaSvg from "../../imports/iconos/iconos/SVG/importancia.svg";
+import jubiSvg from "../../imports/iconos/iconos/SVG/Jubi.svg";
+import ecosistemaSvg from "../../imports/iconos/iconos/SVG/ecosistema.svg";
+import aliadosSvg from "../../imports/iconos/iconos/SVG/aliados.svg";
+import zootekaSvg from "../../imports/iconos/iconos/SVG/zooteka.svg";
+
+// ==========================================
+// Navigation Configuration
+// ==========================================
 interface NavItem {
   label: string;
   href: string;
-  icon: ElementType;
+  iconSrc: string;
 }
 
-// Actualizamos el label de Jubi
 const navItems: NavItem[] = [
-  { label: "Inicio", href: "#inicio", icon: Home },
-  { label: "Acerca de", href: "#acerca-de", icon: BookOpen },
-  { label: "Importancia", href: "#importancia", icon: Globe },
-  { label: "Jubi El Tigrillo", href: "#jubi-3d", icon: Box },
-  { label: "Ecosistema", href: "#product-grid", icon: LayoutGrid },
-  { label: "Aliados", href: "#aliados", icon: Users },
+  { label: "Inicio", href: "#inicio", iconSrc: homeSvg },
+  { label: "Acerca de", href: "#acerca-de", iconSrc: acercaDeSvg },
+  { label: "Importancia", href: "#importancia", iconSrc: importanciaSvg },
+  { label: "Jubi El Tigrillo", href: "#jubi-3d", iconSrc: jubiSvg },
+  { label: "Ecosistema", href: "#product-grid", iconSrc: ecosistemaSvg },
+  { label: "Aliados", href: "#aliados", iconSrc: aliadosSvg },
 ];
 
+// ==========================================
+// Navbar Component
+// ==========================================
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -65,7 +74,12 @@ export const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Brain className={cn("w-8 h-8", isScrolled ? "text-[#1a432e]" : "text-white")} />
+          {/* Increased Zooteka Logo from w-8 h-8 to w-9 h-9 (36px) */}
+          <img 
+            src={zootekaSvg} 
+            alt="Zooteka Logo" 
+            className={cn("w-9 h-9", isScrolled ? "opacity-100" : "opacity-90")} 
+          />
           <span className={cn("text-xl font-bold font-serif", isScrolled ? "text-[#1a432e]" : "text-white")}>
             Zooteka
           </span>
@@ -83,7 +97,8 @@ export const Navbar = () => {
                 isScrolled ? "text-[#1a432e]" : "text-white"
               )}
             >
-              <item.icon size={16} />
+              {/* Increased Desktop Icon Size to w-5 h-5 (20px) */}
+              <img src={item.iconSrc} alt={item.label} className="w-5 h-5 object-contain" />
               {item.label}
             </a>
           ))}
@@ -97,7 +112,7 @@ export const Navbar = () => {
           )}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
@@ -115,7 +130,8 @@ export const Navbar = () => {
               onClick={(e) => scrollToSection(e, item.href)}
               className="flex items-center gap-3 text-[#1a432e] font-medium"
             >
-              <item.icon size={20} />
+              {/* Increased Mobile Icon Size to w-6 h-6 (24px) */}
+              <img src={item.iconSrc} alt={item.label} className="w-6 h-6 object-contain" />
               {item.label}
             </a>
           ))}

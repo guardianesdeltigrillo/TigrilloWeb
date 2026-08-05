@@ -2,6 +2,9 @@ import { motion } from 'motion/react';
 import { AlertTriangle, Scale, Mountain } from 'lucide-react';
 import { AnimatedText } from './AnimatedText';
 
+// Importamos el fondo
+import fondo1 from '../../imports/fondo 1.png';
+
 const stats = [
   {
     value: '2-3',
@@ -15,7 +18,7 @@ const stats = [
     unit: 'Vulnerable',
     label: 'Estado de conservación UICN',
     Icon: AlertTriangle,
-    iconColor: 'text-red-500', // Set specifically to red
+    iconColor: 'text-red-500', 
   },
   {
     value: '1500+',
@@ -28,7 +31,15 @@ const stats = [
 
 export const Stats = () => {
   return (
-    <section className="py-24 bg-[#1a432e] px-6">
+    <section 
+      className="py-24 bg-[#1a432e] px-6"
+      style={{ 
+        backgroundImage: `url('${fondo1}')`, 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <div className="max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0 }}
@@ -61,7 +72,6 @@ export const Stats = () => {
               transition={{ delay: 0.6 + (index * 0.2), duration: 0.5 }}
               className="flex flex-col items-center"
             >
-              {/* Círculo con el Icono */}
               <div className="w-32 h-32 rounded-full border border-white/20 bg-white/10 flex items-center justify-center mb-6 shadow-sm backdrop-blur-sm">
                 <stat.Icon 
                   className={`w-14 h-14 drop-shadow-md ${stat.iconColor}`} 
@@ -69,7 +79,6 @@ export const Stats = () => {
                 />
               </div>
               
-              {/* Información y Texto desplazados debajo del icono */}
               <h3 className="text-2xl font-bold text-white mb-1">
                 {stat.value === 'VU' ? stat.unit : `${stat.value} ${stat.unit}`}
               </h3>

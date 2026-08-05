@@ -6,6 +6,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { AnimatedText } from './AnimatedText';
 
 import jubiModelPath from '../../imports/JubiTigrillo2.glb'; 
+// Importamos el fondo
+import fondo1 from '../../imports/fondo 1.png';
 
 interface ProductSection3DProps {
   id: string;
@@ -169,6 +171,13 @@ export const ProductSection3D = ({
         "min-h-screen flex items-center py-20 px-6 md:px-24 overflow-hidden relative",
         dark ? "bg-[#1a432e] text-white" : "bg-[#f9f6f1] text-[#333]"
       )}
+      // Aquí aplicamos la imagen como fondo si es la sección oscura
+      style={dark ? { 
+        backgroundImage: `url('${fondo1}')`, 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      } : undefined}
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className={cn(
@@ -218,14 +227,12 @@ export const ProductSection3D = ({
             transition={{ duration: 0.8 }}
             className="flex-1 w-full"
           >
-            {/* CONTENEDOR 3D ACTUALIZADO: Sombra más oscura y opaca */}
             <div className={cn(
               "relative aspect-square w-full max-w-lg mx-auto rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(10,25,15,0.95)] border border-black/5",
               dark ? "bg-white/5 border-white/10" : "bg-black/5"
             )}>
               <Canvas3DScene />
               
-              {/* Etiqueta geométrica flotante */}
               <div className="absolute bottom-4 left-4 bg-[#1a432e] text-white px-4 py-2 text-xs font-bold uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] rounded">
                 Mueve el ratón para interactuar
               </div>

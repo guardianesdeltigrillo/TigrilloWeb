@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import tigrilloImage from '../../imports/image-1.png';
+import tigrilloImage from '../../imports/fondo 3.png';
 import { AnimatedText } from './AnimatedText';
 
 export const Hero = () => {
