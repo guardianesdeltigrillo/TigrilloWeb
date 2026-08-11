@@ -1,6 +1,12 @@
 import { motion } from 'motion/react';
-import { AlertTriangle, Scale, Mountain } from 'lucide-react';
 import { AnimatedText } from './AnimatedText';
+
+// ==========================================
+// SVG File Imports
+// ==========================================
+import pesoSvg from '../../imports/iconos/iconos/SVG/peso.svg';
+import importanciaSvg from '../../imports/iconos/iconos/SVG/importancia.svg';
+import habitadSvg from '../../imports/iconos/iconos/SVG/habitad.svg';
 
 // Importamos el fondo
 import fondo1 from '../../imports/fondo 1.png';
@@ -10,22 +16,19 @@ const stats = [
     value: '2-3',
     unit: 'Kilogramos',
     label: 'Peso promedio del adulto',
-    Icon: Scale,
-    iconColor: 'text-white',
+    iconSrc: pesoSvg,
   },
   {
     value: 'VU', 
     unit: 'Vulnerable',
     label: 'Estado de conservación UICN',
-    Icon: AlertTriangle,
-    iconColor: 'text-red-500', 
+    iconSrc: importanciaSvg,
   },
   {
     value: '1500+',
     unit: 'Metros',
     label: 'Elevación típica del hábitat',
-    Icon: Mountain,
-    iconColor: 'text-white',
+    iconSrc: habitadSvg,
   },
 ];
 
@@ -73,9 +76,10 @@ export const Stats = () => {
               className="flex flex-col items-center"
             >
               <div className="w-32 h-32 rounded-full border border-white/20 bg-white/10 flex items-center justify-center mb-6 shadow-sm backdrop-blur-sm">
-                <stat.Icon 
-                  className={`w-14 h-14 drop-shadow-md ${stat.iconColor}`} 
-                  strokeWidth={1.5} 
+                <img 
+                  src={stat.iconSrc} 
+                  alt={stat.label} 
+                  className="w-14 h-14 object-contain drop-shadow-md" 
                 />
               </div>
               

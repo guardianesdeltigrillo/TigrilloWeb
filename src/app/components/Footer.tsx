@@ -14,16 +14,7 @@ export const Footer = () => {
             </p>
           </div>
           
-          {/* Columna 2 */}
-          <div>
-            <h3 className="text-xl font-serif mb-6 uppercase tracking-widest">Navegación</h3>
-            <ul className="space-y-4 text-white/70 font-medium">
-              <li><a href="#acerca-de" className="hover:text-white hover:translate-x-2 transition-all inline-block">Acerca de Zooteka</a></li>
-              <li><a href="#importancia" className="hover:text-white hover:translate-x-2 transition-all inline-block">Impacto Ambiental</a></li>
-              <li><a href="#jubi-3d" className="hover:text-white hover:translate-x-2 transition-all inline-block">Jubi El Tigrillo</a></li>
-              <li><a href="#product-grid" className="hover:text-white hover:translate-x-2 transition-all inline-block">Ecosistema Digital</a></li>
-            </ul>
-          </div>
+       
 
           {/* Columna 3: Redes Sociales */}
           <div>

@@ -44,26 +44,7 @@ const products: Product[] = [
     color: 'from-amber-500/80 to-orange-900/90',
     link: 'https://guardianes-del-tigrillo.itch.io/triviazoo',
   },
-  {
-    id: 'bot-jubi',
-    title: 'BOT JUBI',
-    description: 'Conversa con el alma del bosque. Jubi, nuestro bot inteligente, te acompaña en una charla dinámica para resolver tus dudas y enseñarte todo sobre su hábitat en tiempo real.',
-    icon: MessageCircle,
-    image: imgBot, 
-    action: 'Abrir WhatsApp',
-    color: 'from-teal-500/80 to-cyan-900/90',
-    link: 'https://wa.link/6yuf3z',
-  },
-  {
-    id: 'entrevista',
-    title: 'ENTREVISTA',
-    description: 'Voces expertas por la vida silvestre. Sumérgete en una charla profunda con los especialistas que dedican su vida a la protección y cuidado del tigrillo en un encuentro exclusivo.',
-    icon: Video,
-    image: imgEntrevista, 
-    action: 'Ver en YouTube',
-    color: 'from-blue-500/80 to-indigo-900/90',
-    link: 'https://www.youtube.com/',
-  }
+ 
 ];
 
 export const ProductGrid = () => {
@@ -143,7 +124,8 @@ export const ProductGrid = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.8 + (index * 0.1) }}
-              className="group relative overflow-hidden rounded-none aspect-[4/3] md:aspect-auto md:h-[420px] shadow-2xl flex items-end cursor-pointer border border-white/10"
+              // CAMBIO REALIZADO AQUÍ: Reemplazado 'rounded-none' por 'rounded-2xl'
+              className="group relative overflow-hidden rounded-2xl aspect-[4/3] md:aspect-auto md:h-[420px] shadow-2xl flex items-end cursor-pointer border border-white/10"
             >
               <motion.div 
                 style={{ y: yCardImage }} 
